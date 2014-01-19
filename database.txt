@@ -1,0 +1,9 @@
+k we need to change the database
+make the database for payments a database for accounts
+and in accounts we can add +'s and -'s
+so when we initialze the students we get the tuition fees for that grade and add that as a +
+and all payments are added as -'s and so on and so on..
+this will make things much simpler hey..and solve a lot of problems....
+this way when we add a student we can tell the system how much the shcool fees should be as we add them.
+
+and this will make the bus thing much easier aswell....awe this maketh a sense brazo, we should just save this project.
