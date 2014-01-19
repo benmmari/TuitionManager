@@ -138,7 +138,6 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jDatePickerUtil1 = new net.sourceforge.jdatepicker.util.JDatePickerUtil();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         mainPane = new javax.swing.JTabbedPane();
@@ -1414,7 +1413,6 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private net.sourceforge.jdatepicker.util.JDatePickerUtil jDatePickerUtil1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
