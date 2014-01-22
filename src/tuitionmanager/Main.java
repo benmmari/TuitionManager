@@ -71,12 +71,7 @@ public class Main extends javax.swing.JFrame {
 
 studentView.addMouseListener(new MouseAdapter() {
     public void mousePressed(MouseEvent me) {
-        Point p = me.getPoint();
-        int row = studentView.rowAtPoint(p);
-        if (me.getClickCount() == 2) {
-            // your valueChanged overridden method
-            //System.out.println(studentView.getValueAt(table.getSelectedRow(), 0).toString());
-            
+       if (me.getClickCount() == 2) {   
         please(studentView, studentView.getValueAt(studentView.getSelectedRow(), 0).toString());
         }
     }
@@ -229,6 +224,7 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         decreaseM = new javax.swing.JRadioButton();
         buttonM = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -716,7 +712,7 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
 
             },
             new String [] {
-                "Payment#", "Date", "Amount", "Account"
+                "Transaction#", "Date", "Amount", "Account"
             }
         ));
         jScrollPane3.setViewportView(studentPaymentTable);
@@ -818,7 +814,7 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         jLabel17.setText("CAPTURE PAYMENT");
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(204, 0, 0));
+        jButton5.setForeground(new java.awt.Color(255, 0, 51));
         jButton5.setText("DELETE STUDENT");
         jButton5.setToolTipText("Permanently deletes student from database.");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -916,34 +912,22 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel28.setText("MODIFY ACCOUNT");
 
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 0, 0));
+        jButton4.setText("DELETE PAYMENT");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout paymentAddLayout = new javax.swing.GroupLayout(paymentAdd);
         paymentAdd.setLayout(paymentAddLayout);
         paymentAddLayout.setHorizontalGroup(
             paymentAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paymentAddLayout.createSequentialGroup()
-                .addGroup(paymentAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(paymentAddLayout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jLabel16))
-                    .addGroup(paymentAddLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(paymentAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(paymentAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(paidL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                            .addComponent(totalL, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(studentNumberL, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameL, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(surnameL, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(gradeL, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(balanceL))))
+                .addGap(98, 98, 98)
+                .addComponent(jLabel16)
                 .addGap(31, 31, 31)
                 .addGroup(paymentAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5)
@@ -962,6 +946,27 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
                         .addGap(78, 78, 78))
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addComponent(jScrollPane3)
+            .addGroup(paymentAddLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(paymentAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(paymentAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(paidL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                    .addComponent(totalL, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(studentNumberL, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nameL, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(surnameL, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(gradeL, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(balanceL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         paymentAddLayout.setVerticalGroup(
             paymentAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1012,9 +1017,11 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(paymentAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE))
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4)))
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
         );
 
         paymentPane.addTab("Individual", paymentAdd);
@@ -1341,6 +1348,19 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         // TODO add your handling code here:
     }//GEN-LAST:event_balanceLActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        String payment = studentPaymentTable.getValueAt(studentPaymentTable.getSelectedRow(), 2).toString();
+        
+        int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to permanently delete transaction of "+payment+ " on the account of "+nameL.getText()+" "+surnameL.getText(), "Confirm Payment Delete",  JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION)
+        {
+        String paymentID = studentPaymentTable.getValueAt(studentPaymentTable.getSelectedRow(), 0).toString();
+        theManager.deletePayment(paymentID);
+        please(studentView, studentView.getValueAt(studentView.getSelectedRow(), 0).toString());
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -1411,6 +1431,7 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JFileChooser jFileChooser1;

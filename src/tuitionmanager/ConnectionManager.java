@@ -214,6 +214,31 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         return total;
     }
     
+        public double deletePayment(String number) {
+        Connection conn =null;
+        PreparedStatement st = null;
+        String sql = "";
+        double total= 0;
+        try {
+            conn = getConnection();
+            sql = "DELETE FROM Payments WHERE ID = "+number;
+            st = conn.prepareStatement(sql);
+            st.executeQuery();
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        finally {
+            try {
+                conn.close();
+            }
+            catch(SQLException e) {
+               e.getMessage();
+            }
+        }
+        return total;
+    }
+    
     public void getAllPayments(JTable table) {
         Connection conn =null;
         PreparedStatement st = null;
