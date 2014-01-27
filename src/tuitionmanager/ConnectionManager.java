@@ -246,7 +246,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         ((DefaultTableModel)table.getModel()).setRowCount(0);
         try {
             conn = getConnection();
-            sql = "SELECT * FROM Payments WHERE Account <> 'Tuition Fees' AND Account <> 'Bus Fees'  ORDER BY Date";
+            sql = "SELECT * FROM Payments WHERE Account NOT LIKE 'Tuition%' AND Account <> 'Bus Fees' ORDER BY Date";
             st = conn.prepareStatement(sql);
             System.out.println(sql);
             ResultSet rs  = st.executeQuery();
@@ -439,7 +439,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             st.setString(1, number);
             st.setDate(2, getDate(date));
             st.setDouble(3,amount) ;
-            st.setString(4,account+" Payment: Thank you!") ;           
+            st.setString(4,"Payment " +account+": Thank you!") ;           
             
             st.executeUpdate();
         }
@@ -823,6 +823,37 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             }
     }
     
+     public boolean addToStudents(String name, String surname, String grade) {
+        Connection conn = null;
+        Statement st = null;
+        String number = "";
+        try {
+            conn = getConnection();
+             st = conn.createStatement();
+             number  = Work.studentNumber(studentNumbers,name, surname);
+            String sql = "INSERT INTO Students(STU_ID, Name, Surname, Grade) VALUES('"+number+"','"+name+"', '"+surname+"', '"+grade+"')";
+            st.executeUpdate(sql);
+        }
+        catch(SQLException e) {
+            System.out.println(e.getMessage());
+            //addToStudents( student_ID,name,surname,grade, number++);
+            
+        }
+        
+       finally {
+            try {
+          conn.close();
+          this.getStudentNumbers();
+            }
+            catch (SQLException e) {
+                    System.out.println(e.getMessage());
+            }
+            }
+        
+        return true;
+    }
+   
+    
     
     public boolean addToStudents(String name, String surname, String grade,double amount) {
         Connection conn = null;
@@ -855,7 +886,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         return true;
     }
     
-     public boolean addToStudents(String name, String surname, String grade,double amount, double fees) {
+     public boolean addToStudents(String name, String surname, String grade,double amount,double fees) {
         Connection conn = null;
         Statement st = null;
         String number = "";
@@ -993,16 +1024,6 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         }
         Object[] row = {rowCount+" Students", "-","-",overallTerm, overallPaid, overallBal}; 
         this.row=row;
-           }if (operation.equals("it")) {
-            //String grade = studentComboView.getSelectedItem().toString();
-             int rowCount= ((DefaultTableModel)table.getModel()).getRowCount();
-        
-             for (int index=0;index<rowCount;index++) {
-             String student = ((DefaultTableModel)table.getModel()).getValueAt(index, 0).toString();
-            addPayment(student, ((double)getCost(grade)/3.00), "Tuition: " +term);
-            
-        }
-             
            }
        
         return 0;

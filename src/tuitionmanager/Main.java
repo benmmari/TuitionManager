@@ -89,12 +89,17 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
     }
     
     protected void handleSelectionEvent(ListSelectionEvent e) {
-                    String studentNumber = paymentsView.getValueAt(paymentsView.getSelectedRow(), 1).toString();
+        try {
+        String studentNumber = paymentsView.getValueAt(paymentsView.getSelectedRow(), 1).toString();
             extraDate.setText(paymentsView.getValueAt(paymentsView.getSelectedRow(), 0).toString());
             extraAmount.setText(paymentsView.getValueAt(paymentsView.getSelectedRow(), 2).toString());
             extraNumber.setText(studentNumber);
             extraAccount.setText(paymentsView.getValueAt(paymentsView.getSelectedRow(), 3).toString());
             getDetails(studentNumber);
+        }
+        catch (ArrayIndexOutOfBoundsException e1) {
+            System.out.println("Error Bro");
+        }
         
 
 }
@@ -1148,7 +1153,7 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
                 if (fees1.isSelected()){
                         theManager.addToStudents(textName.getText(),textSurname.getText(), gradeCombo.getSelectedItem().toString(),theManager.getCost(gradeCombo.getSelectedItem().toString()));
                 } else {
-                    String fees = JOptionPane.showInputDialog("Please enter the tuition amount that the student will have to pay this year: ");
+                    String fees = JOptionPane.showInputDialog("Please enter the tuition amount that the student will have to pay for the remainder of the TERM: ");
                     if (theManager.isNumeric(fees)){
                         double dFees = Double.parseDouble(fees);
                         theManager.addToStudents(textName.getText(),textSurname.getText(), gradeCombo.getSelectedItem().toString(),theManager.getCost(gradeCombo.getSelectedItem().toString()),dFees);
@@ -1181,7 +1186,7 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
                 System.out.println(sheet.length+"!!!!!!!!!!!!!!!!!!!!!");
                 theManager.addToClasses(grade, sheet.tuition, sheet.trip);
                 for (int index=0;index<sheet.length;index++) {
-                    theManager.addToStudents(sheet.names.get(index), sheet.surnames.get(index),grade, sheet.tuition);
+                    theManager.addToStudents(sheet.names.get(index), sheet.surnames.get(index),grade);
                 }
                 pf.close();
             }
@@ -1279,8 +1284,14 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
     }//GEN-LAST:event_paymentViewFocusGained
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:    
         theManager.getAllPayments(paymentsView);
+        extraDate.setText("");
+        extraAmount.setText("");
+        extraNumber.setText("");
+        extraAccount.setText("");
+        extraName.setText("");
+        extraSurname.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void termChoiceBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_termChoiceBoxActionPerformed
