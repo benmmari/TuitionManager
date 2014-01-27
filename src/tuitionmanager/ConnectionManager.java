@@ -277,7 +277,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         ((DefaultTableModel)table.getModel()).setRowCount(0);
         try {
             conn = getConnection();
-            sql = "SELECT * FROM Payments WHERE STU_ID = '"+number+"' ORDER BY ID";
+            sql = "SELECT * FROM Payments WHERE STU_ID = '"+number+"' ORDER BY Date";
             st = conn.prepareStatement(sql);
             System.out.println(sql);
             ResultSet rs  = st.executeQuery();
@@ -947,7 +947,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
     @Override
     protected Integer doInBackground() throws Exception { //To change body of generated methods, choose Tools | Templates.
 
-           if (operation.equals("fc")) {
+           if (operation.equals("fc") || operation.equals("it")) {
                
         String innerGrade = grade;
         int rowCount= ((DefaultTableModel)table.getModel()).getRowCount();
@@ -957,23 +957,27 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             if (grade.equals("All")) {
             innerGrade = ((DefaultTableModel)table.getModel()).getValueAt(index, 6).toString();
             }
+            String student = ((DefaultTableModel)table.getModel()).getValueAt(index, 0).toString();
+            
+            if (operation.equals("it")) {
+            addPayment(student, ((double)getCost(grade)/3.00), "Tuition: " +term);
+            }
         //    double bus=0;
           //  if (this.getBusChoice(((DefaultTableModel)table.getModel()).getValueAt(index, 0).toString())) {
             //    bus = this.getBusCost(getLocation(((DefaultTableModel)table.getModel()).getValueAt(index, 0).toString()));
             //}
             
-            String student = ((DefaultTableModel)table.getModel()).getValueAt(index, 0).toString();
             double cost = getTotalDue(student);
                     //= getCost(innerGrade);
             overallCost+=cost;
             double totalCost = cost;
-            double termCost =termBalance(term,totalCost); 
-            overallTerm+=termCost;
+            //double termCost =termBalance(term,totalCost); 
+            overallTerm+=totalCost;
             
-            Object[] data = {termCost, index, 3};
+            Object[] data = {totalCost, index, 3};
             publish(data);
             
-            double totalPaid=getPaid(student);;
+            double totalPaid=getPaid(student);
             if (totalPaid!=0){
             totalPaid = -1 * totalPaid;
             }
@@ -981,7 +985,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             Object[] data1 = {totalPaid, index, 4};
             publish(data1);
             
-            double diff = termCost - totalPaid;
+            double diff = totalCost - totalPaid;
             overallBal+=diff;
             Object[] data2 = {diff, index, 5};
             publish(data2);
@@ -989,6 +993,16 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         }
         Object[] row = {rowCount+" Students", "-","-",overallTerm, overallPaid, overallBal}; 
         this.row=row;
+           }if (operation.equals("it")) {
+            //String grade = studentComboView.getSelectedItem().toString();
+             int rowCount= ((DefaultTableModel)table.getModel()).getRowCount();
+        
+             for (int index=0;index<rowCount;index++) {
+             String student = ((DefaultTableModel)table.getModel()).getValueAt(index, 0).toString();
+            addPayment(student, ((double)getCost(grade)/3.00), "Tuition: " +term);
+            
+        }
+             
            }
        
         return 0;

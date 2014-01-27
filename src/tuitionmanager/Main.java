@@ -78,6 +78,7 @@ studentView.addMouseListener(new MouseAdapter() {
         }
     }
 });
+
 paymentsView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 ListSelectionModel selectionModel = paymentsView.getSelectionModel();
 selectionModel.addListSelectionListener(new ListSelectionListener() {
@@ -233,12 +234,16 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         jMenuItem3 = new javax.swing.JMenuItem();
         exitMenu = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         mainPane.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        studentComboView.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Grade", "All", "Foundation", "Upper-Pre", "Lower-Pre", "Grade 0", "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6", "Grade 7" }));
+        studentComboView.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Grade", "All", "Foundation", "Lower-Pre", "Upper-Pre", "Grade 0", "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6", "Grade 7" }));
         studentComboView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 studentComboViewActionPerformed(evt);
@@ -1061,6 +1066,34 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setText("Initialize New Term");
+
+        jMenuItem2.setText("Term 1");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuItem4.setText("Term 2");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
+
+        jMenuItem5.setText("Term 3");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu3);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1363,6 +1396,30 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        initializeTerm("Term 1");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        initializeTerm("Term 2");
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        initializeTerm("Term 3");
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    
+        public void initializeTerm(String term) {
+        String grade = studentComboView.getSelectedItem().toString();
+        ProgressForm pf = new ProgressForm();
+        pf.theMain();
+        ConnectionManager swing1= new ConnectionManager(studentView,pf, grade, "it", term);
+        swing1.execute();
+        
+        }
     
     /**
      * @param args the command line arguments
@@ -1467,9 +1524,13 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
