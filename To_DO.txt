@@ -1,0 +1,6 @@
+1. Delete payments. Done...add confirmation box.
+2. Modify Amounts/Dates/Account - Input dialogue box.
+3. Logging.... proper logging. 
+4. Format numbers, 2 decimal places..
+5. Database online so that it can be accessed from multiple locations..or atleaast locally on the network! 
+yes beautiful idea...

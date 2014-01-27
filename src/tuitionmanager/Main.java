@@ -4,10 +4,12 @@
  */
 package tuitionmanager;
 
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -32,7 +34,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main(ConnectionManager theManager, String user) {
-        initComponents();
+initComponents();
         if (user.equals("ADMIN")) {
             groupButton.setEnabled(true);
             jButton2.setEnabled(true);
