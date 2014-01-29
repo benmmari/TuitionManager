@@ -16,6 +16,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import static tuitionmanager.TuitionManager.getConnection;
 
 /**
@@ -26,13 +28,15 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
    static ArrayList<String> studentNumbers = new ArrayList<String>();
     static Hashtable<String, Double> gradeCost = new Hashtable<String, Double>();
    static  Hashtable<String, Double> busRoute = new Hashtable<String, Double>();
+   static String user;
    
    ProgressForm pf;
    JTable table;
    String grade;
    String operation;
    String term;
-    Object[] row;
+   Object[] row;
+   Logger logger = LogManager.getLogger(ConnectionManager.class.getName());
 
     /**
      * @param args the command line arguments
@@ -47,15 +51,19 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
     this.term=term;
     }
     
-        public ConnectionManager() {
+    public void endSession() {
+     logger.info(user+" logged off. Session over.");
+    }
+    
+        public ConnectionManager(String name) {
         // TODO code application logic here
+    user = name;
+    logger.info(user + " logged in. Session begin.");
     this.getStudentNumbers();
     }
     
-    public static Connection getConnection() {
-         System.out.println("HELLO");
-     
-        String driver = "sun.jdbc.odbc.JdbcOdbcDriver";
+    public Connection getConnection() {
+    String driver = "sun.jdbc.odbc.JdbcOdbcDriver";
     String url = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)}; DBQ=" + "C://System//Annadale.accdb";   
      //String url = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)}; DBQ=" + "C://System//School//Annadale.mdb";   
      
@@ -65,7 +73,8 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         try {
       Class.forName(driver);
      } catch (ClassNotFoundException e) {
-         System.out.println("nonesense");
+      logger.error("Class not found Exception",e );
+         
      }
         try { 
       return DriverManager.getConnection(url, username, password);
@@ -98,7 +107,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             }
         }
         catch (SQLException e) {
-            System.out.println(e.getMessage());
+        logger.error("SQL Exception",e );
         }
         finally {
             try {
@@ -133,8 +142,8 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
                 conn.close();
             }
             catch(SQLException e) {
-               e.getMessage();
-            }
+            logger.error("SQL Exception",e );
+        }
         }
         }
     }
@@ -174,12 +183,14 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         
         }
         catch (SQLException e) {
-            System.out.println(e.getMessage());
+        logger.error("SQL Exception",e );
         }
         
         finally {
             try {
                 conn.close();
+                logger.info(user +": retrieve student info");
+    
             }
             catch(SQLException e) {
                e.getMessage();
@@ -201,7 +212,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             total = rs.getDouble(1);
         }
         catch (SQLException e) {
-            System.out.println(e.getMessage());
+        logger.error("SQL Exception",e );
         }
         finally {
             try {
@@ -226,7 +237,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             st.executeQuery();
         }
         catch (SQLException e) {
-            System.out.println(e.getMessage());
+        logger.error("SQL Exception",e );
         }
         finally {
             try {
@@ -257,7 +268,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             System.out.println("AWE");
         }
         catch (SQLException e) {
-            System.out.println(e.getMessage());
+        logger.error("SQL Exception",e );
         }
         
         finally {
@@ -288,7 +299,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             System.out.println("AWE");
         }
         catch (SQLException e) {
-            System.out.println(e.getMessage());
+        logger.error("SQL Exception",e );
         }
         
         finally {
@@ -315,7 +326,15 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             teacher = rs.getString(1).trim();
         }
         catch(SQLException e) {
-           e.getMessage();
+        logger.error("SQL Exception",e );
+        }
+             finally {
+            try {
+                conn.close();
+            }
+            catch(SQLException e) {
+       logger.error("SQL Exception",e );
+             }
         }
             return teacher;
     }
@@ -334,7 +353,15 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             balance = rs.getDouble(1);
         }
         catch(SQLException e) {
-           e.getMessage();
+        logger.error("SQL Exception",e );
+        }
+             finally {
+            try {
+                conn.close();
+            }
+            catch(SQLException e) {
+       logger.error("SQL Exception",e );
+             }
         }
             return balance;
     }
@@ -353,7 +380,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             balance = rs.getDouble(1);
         }
         catch(SQLException e) {
-           e.getMessage();
+        logger.error("SQL Exception",e );
         }
         
             finally {
@@ -361,8 +388,8 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             conn.close();
             }
             catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+        logger.error("SQL Exception",e );
+        }
             
         }
             return balance;
@@ -382,7 +409,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             balance = rs.getDouble(1);
         }
         catch(SQLException e) {
-           e.getMessage();
+        logger.error("SQL Exception",e );
         }
         
             finally {
@@ -390,8 +417,8 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             conn.close();
             }
             catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+            logger.error("SQL Exception",e );
+        }
             
         }
             return balance;
@@ -412,7 +439,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             total = rs.getDouble(1);
         }
         catch(SQLException e) {
-            System.out.println(e.getMessage());
+        logger.error("SQL Exception",e );
         }
         
         finally {
@@ -420,8 +447,8 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             conn.close();
             }
             catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+        logger.error("SQL Exception",e );
+        }
             
         }
          return total;
@@ -444,16 +471,17 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             st.executeUpdate();
         }
         catch(SQLException e) {
-            System.out.println(e.getMessage());
-        }
+       logger.error("SQL Exception",e );
+         }
         
         finally {
             try {
             conn.close();
+            logger.info(user +": add payment of " +amount+" by :" +number);
             }
             catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+            logger.error("SQL Exception",e );
+        }
         }
     }
     
@@ -474,16 +502,17 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             st.executeUpdate();
         }
         catch(SQLException e) {
-            System.out.println(e.getMessage());
+        logger.error("SQL Exception",e );
         }
         
         finally {
             try {
             conn.close();
+            logger.info(user +": add payment of " +amount+" by :" +number);          
             }
             catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+            logger.error("SQL Exception",e );
+        }
         }
     }
     
@@ -502,7 +531,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             total = rs.getDouble(1);
         }
         catch(SQLException e) {
-            System.out.println(e.getMessage());
+        logger.error("SQL Exception",e );
         }
         
         finally {
@@ -510,103 +539,10 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             conn.close();
             }
             catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+            logger.error("SQL Exception",e );
+        }
         }
         return total;
-    }
-    
-    public String getLocation(String studentNumber) {
-        Connection conn =null;
-        PreparedStatement st = null;
-        String sql ="";
-        String location="";
-                
-        try {
-            conn = getConnection();
-            sql = "SELECT Location FROM Students WHERE STU_ID like '"+studentNumber+"'";
-            st = conn.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-            rs.next();
-            location = rs.getString(1);
-            
-        }
-        catch(SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        finally {
-            try {
-            conn.close();
-            }
-            catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return location;
-    }
-    
-        public boolean getBusChoice(String studentNumber) {
-        Connection conn =null;
-        PreparedStatement st = null;
-        String sql ="";
-        double total = 0;
-        
-        try {
-            conn = getConnection();
-            sql = "SELECT Bus FROM Students WHERE STU_ID like '"+studentNumber+"'";
-            st = conn.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-            rs.next();
-            String choice = rs.getString(1);
-            if (choice.equals("YES")) {
-                return true;
-            }
-        }
-        catch(SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        finally {
-            try {
-            conn.close();
-            }
-            catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return false;
-    }
-    
-    public void fillCosts(JTable table,String grade) {
-        String innerGrade = grade;
-        int rowCount= ((DefaultTableModel)table.getModel()).getRowCount();
-        double overallPaid =0, overallCost =0, overallBal =0;
-        for (int index=0;index<rowCount;index++) {
-            System.out.println(index);
-            if (grade.equals("All")) {
-            innerGrade = ((DefaultTableModel)table.getModel()).getValueAt(index, 6).toString();
-            }
-            double bus=0;
-            if (this.getBusChoice(((DefaultTableModel)table.getModel()).getValueAt(index, 0).toString())) {
-                bus = this.getBusCost(getLocation(((DefaultTableModel)table.getModel()).getValueAt(index, 0).toString()));
-            }
-            double cost = getCost(innerGrade);
-            overallCost+=cost+bus;
-            double totalCost = cost+bus;
-            
-            ((DefaultTableModel)table.getModel()).setValueAt(totalCost, index, 3);
-            double totalPaid = getTotalPaid(((DefaultTableModel)table.getModel()).getValueAt(index, 0).toString());
-            overallPaid+=totalPaid;
-            ((DefaultTableModel)table.getModel()).setValueAt(totalPaid, index, 4);
-            double diff = totalCost - totalPaid;
-            overallBal+=diff;
-            ((DefaultTableModel)table.getModel()).setValueAt(diff, index, 5);
-            
-        }
-        Object[] row = {rowCount+" Students", "-","-",overallCost, overallPaid, overallBal}; 
-        ((DefaultTableModel)table.getModel()).addRow(row);
-        
     }
     
     public void fillStudentValues(String stuNumber, JTextField number, JTextField name, JTextField surname, JTextField grade, JTextField totalDue, JTextField paid, JTextField balance) {
@@ -628,7 +564,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         
         }
         catch(SQLException e) {
-            e.getMessage();
+        logger.error("SQL Exception",e );
         }
         
         finally{
@@ -637,8 +573,8 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             }
             
             catch(SQLException e) {
-                System.out.println(e.getMessage());
-            }
+            logger.error("SQL Exception",e );
+        }
         }
     }
         
@@ -658,7 +594,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             grade.setText(rs.getString(4));
         }
         catch(SQLException e) {
-            e.getMessage();
+        logger.error("SQL Exception",e );
         }
         
         finally{
@@ -667,8 +603,8 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             }
             
             catch(SQLException e) {
-                System.out.println(e.getMessage());
-            }
+           logger.error("SQL Exception",e );
+         }
         }
         
         
@@ -691,11 +627,10 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
                 ((DefaultTableModel)table.getModel()).addRow(rowData);
                 
             }
-            System.out.println("AWE");
         
         }
         catch (SQLException e) {
-            System.out.println(e.getMessage());
+        logger.error("SQL Exception",e );
         }
         
         finally {
@@ -703,8 +638,8 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
                 conn.close();
             }
             catch(SQLException e) {
-               e.getMessage();
-            }
+       logger.error("SQL Exception",e );
+             }
         }
     }
     
@@ -720,19 +655,20 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             while (rs!=null && rs.next()) {
                 studentNumbers.add(rs.getString(1));
             }
-            System.out.println("Student numbers retrieved :" +studentNumbers.size());
         }
         catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+      logger.error("SQL Exception",e );
+          }
         
         finally {
             try {
             conn.close();
+            logger.info(user +": retrieve student numbers "+studentNumbers.size() );
+             
             }
             catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+            logger.error("SQL Exception",e );
+        }
         }
         
         
@@ -747,22 +683,21 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             st = conn.prepareStatement(sql);
             st.setString(1, grade);
             st.setString(2, name);
-            st.executeUpdate();
-            
-            
+            st.executeUpdate();  
         }
         catch (SQLException e) {
-            System.out.println(e.getMessage());
+        logger.error("SQL Exception",e );
         }
         
         finally  {
             try {
             conn.close();
+            logger.info(user +": add to teachers :" + name); 
             }
             
             catch(SQLException e) {
-                e.getMessage();
-            }
+       logger.error("SQL Exception",e );
+             }
         }
     }
     public void addToClasses(String grade, double tuition, double trip) { 
@@ -778,16 +713,18 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             
         }
         catch(SQLException e) {
-           System.out.println(e.getMessage());
+        logger.error("SQL Exception",e );
         }
         
         finally {
             try {
             conn.close();
+            logger.info(user +": add to class :" +grade +" "+tuition);
+            
             }
             catch(SQLException e) {
-                System.out.println(e.getMessage());
-            }
+            logger.error("SQL Exception",e );
+        }
             }
     }
     
@@ -807,37 +744,38 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             st.executeUpdate();
         }
         catch(SQLException e) {
-            System.out.println(e.getMessage());
-            //addToStudents( student_ID,name,surname,grade, number++);
-            
+            logger.error("SQL Exception",e );
+        
         }
         
        finally {
             try {
           conn.close();
-          this.getStudentNumbers();
-            }
+          logger.info(user +": add to account :" +number+" "+cost+" " +detail);
+ }
             catch (SQLException e) {
-                    System.out.println(e.getMessage());
-            }
+            logger.error("SQL Exception",e );
+        }
             }
     }
     
      public boolean addToStudents(String name, String surname, String grade) {
         Connection conn = null;
-        Statement st = null;
+        PreparedStatement st = null;
         String number = "";
         try {
             conn = getConnection();
-             st = conn.createStatement();
              number  = Work.studentNumber(studentNumbers,name, surname);
-            String sql = "INSERT INTO Students(STU_ID, Name, Surname, Grade) VALUES('"+number+"','"+name+"', '"+surname+"', '"+grade+"')";
-            st.executeUpdate(sql);
+            String sql = "INSERT INTO Students(STU_ID, Name, Surname, Grade) VALUES(?,?,?,?)";
+            st= conn.prepareStatement(sql);
+            st.setString(1, number);
+            st.setString(2, name);
+            st.setString(3, surname);
+            st.setString(4, grade);
+            st.executeUpdate();
         }
         catch(SQLException e) {
-            System.out.println(e.getMessage());
-            //addToStudents( student_ID,name,surname,grade, number++);
-            
+        logger.error("SQL Exception",e );
         }
         
        finally {
@@ -846,8 +784,8 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
           this.getStudentNumbers();
             }
             catch (SQLException e) {
-                    System.out.println(e.getMessage());
-            }
+            logger.error("SQL Exception",e );
+        }
             }
         
         return true;
@@ -857,30 +795,33 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
     
     public boolean addToStudents(String name, String surname, String grade,double amount) {
         Connection conn = null;
-        Statement st = null;
+        PreparedStatement st = null;
         String number = "";
         try {
             conn = getConnection();
-             st = conn.createStatement();
-             number  = Work.studentNumber(studentNumbers,name, surname);
-            String sql = "INSERT INTO Students(STU_ID, Name, Surname, Grade) VALUES('"+number+"','"+name+"', '"+surname+"', '"+grade+"')";
-            st.executeUpdate(sql);
+            number  = Work.studentNumber(studentNumbers,name, surname);
+            String sql = "INSERT INTO Students(STU_ID, Name, Surname, Grade) VALUES(?,?,?,?)";
+            st=conn.prepareStatement(sql);
+            st.setString(1, number);
+            st.setString(2,name);
+            st.setString(3, surname);
+            st.setString(4,grade);
+            st.executeUpdate();
         }
         catch(SQLException e) {
-            System.out.println(e.getMessage());
-            //addToStudents( student_ID,name,surname,grade, number++);
-            
+            logger.error("SQL Exception",e );
+        
         }
         
        finally {
             try {
           conn.close();
           this.getStudentNumbers();
-          this.addToAccount(number, amount, "Tuition Fees");
+          this.addToAccount(number, amount, "Tuition fees for term");
             }
             catch (SQLException e) {
-                    System.out.println(e.getMessage());
-            }
+            logger.error("SQL Exception",e );
+        }
             }
         
         return true;
@@ -888,30 +829,32 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
     
      public boolean addToStudents(String name, String surname, String grade,double amount,double fees) {
         Connection conn = null;
-        Statement st = null;
+        PreparedStatement st = null;
         String number = "";
         try {
             conn = getConnection();
-             st = conn.createStatement();
              number  = Work.studentNumber(studentNumbers,name, surname);
-            String sql = "INSERT INTO Students(STU_ID, Name, Surname, Grade) VALUES('"+number+"','"+name+"', '"+surname+"', '"+grade+"')";
-            st.executeUpdate(sql);
+             String sql = "INSERT INTO Students(STU_ID, Name, Surname, Grade) VALUES(?,?,?,?)";
+            st=conn.prepareStatement(sql);
+            st.setString(1, number);
+            st.setString(2,name);
+            st.setString(3, surname);
+            st.setString(4,grade);
+            st.executeUpdate();
         }
         catch(SQLException e) {
-            System.out.println(e.getMessage());
-            //addToStudents( student_ID,name,surname,grade, number++);
-            
+        logger.error("SQL Exception",e );
         }
         
        finally {
             try {
           conn.close();
           this.getStudentNumbers();
-          this.addToAccount(number, fees, "Tuition Fees");
+          this.addToAccount(number, fees, "Partial tuition for remainder of term.");
             }
             catch (SQLException e) {
-                    System.out.println(e.getMessage());
-            }
+            logger.error("SQL Exception",e );
+        }
             }
         
         return true;
@@ -963,15 +906,17 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             total = rs.getDouble(1);
         }
         catch (SQLException e) {
-            System.out.println(e.getMessage());
+        logger.error("SQL Exception",e );
         }
         finally {
             try {
                 conn.close();
+                logger.info(user +": deleted student "+number);
+
             }
             catch(SQLException e) {
-               e.getMessage();
-            }
+            logger.error("SQL Exception",e );
+        }
         }
     }
 

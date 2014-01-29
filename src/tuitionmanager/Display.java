@@ -112,7 +112,7 @@ public class Display extends javax.swing.JFrame {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
         if (checkPass(nameText.getText().toString(), new String(passText.getPassword()))) {
-            ConnectionManager manager = new ConnectionManager();
+            ConnectionManager manager = new ConnectionManager(nameText.getText());
             Main theMain = new Main(manager,nameText.getText());
             theMain.setVisible(true);
         

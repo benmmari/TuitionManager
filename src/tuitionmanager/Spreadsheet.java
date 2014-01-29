@@ -12,7 +12,6 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -45,90 +44,84 @@ public class Spreadsheet {
     
     int length = 0;
     
-
-        public Spreadsheet(String fileName, String sheetName) 
+    
+    public Spreadsheet(String fileName, String sheetName)
     {
-        try 
+        try
         {
-           this.fileName=fileName;
+            this.fileName=fileName;
             input= new FileInputStream(this.fileName);
             myFileSystem= new POIFSFileSystem(input);
             myWorkBook =new HSSFWorkbook(myFileSystem);
             mySheet= myWorkBook.getSheet(sheetName);
-            rowIterator= mySheet.rowIterator();  
+            rowIterator= mySheet.rowIterator();
             cellVectorHolder= new Vector();
             dataHolder=getData();
             convert();
             length = names.size();
         }
-
-        catch (FileNotFoundException ex) {
-            //Logger.getLogger(readExcelFile.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       catch(IOException e)
-       {
-            //Logger.getLogger(readExcelFile.class.getName()).log(Level.SEVERE, null, e);
-       }
-
-    }
         
-       public Vector getData()
-       {     
-            try
-            {
+        catch (FileNotFoundException ex) {
+        }
+        catch(IOException e)
+        {
+        }
+        
+    }
+    
+    public Vector getData()
+    {
+        try
+        {
             HSSFRow myRow;
             Iterator cellIterator;
             Vector cellStoreVector;
             while (rowIterator.hasNext())
-            {    
-            myRow=(HSSFRow)rowIterator.next();
-            cellIterator = myRow.cellIterator();
-            cellStoreVector = new Vector();
-            HSSFCell myCell;    
+            {
+                myRow=(HSSFRow)rowIterator.next();
+                cellIterator = myRow.cellIterator();
+                cellStoreVector = new Vector();
+                HSSFCell myCell;
                 while (cellIterator.hasNext())
                 {
                     myCell=(HSSFCell)cellIterator.next();
                     cellStoreVector.addElement(myCell);
                     System.out.println("next");
                 }
-             cellVectorHolder.addElement(cellStoreVector);
+                cellVectorHolder.addElement(cellStoreVector);
             }
-            }
-            
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-            return cellVectorHolder;
         }
-       
-       public ArrayList<String> getTeachers() {
-           return teachers;
-       }
-       public void convert() {
-           Vector cellStoreVector = null;
-           HSSFCell theData = null;
-           
-           cellStoreVector = (Vector)dataHolder.elementAt(0);
-           for (int count=1;count<cellStoreVector.size();count++) {
-             System.out.println(count);
-           
-               theData= (HSSFCell)cellStoreVector.elementAt(count);
+        
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return cellVectorHolder;
+    }
+    
+    public ArrayList<String> getTeachers() {
+        return teachers;
+    }
+    public void convert() {
+        Vector cellStoreVector = null;
+        HSSFCell theData = null;
+        
+        cellStoreVector = (Vector)dataHolder.elementAt(0);
+        for (int count=1;count<cellStoreVector.size();count++) {
+            System.out.println(count);
+            
+            theData= (HSSFCell)cellStoreVector.elementAt(count);
             teachers.add(theData.toString());
             System.out.println(theData.toString() + " " +count);
-           }
-           
-           
-           cellStoreVector = (Vector)dataHolder.elementAt(1); 
-            theData= (HSSFCell)cellStoreVector.elementAt(1);
-            tuition = theData.getNumericCellValue();
-            
-            //cellStoreVector = (Vector)dataHolder.elementAt(2); 
-            //theData= (HSSFCell)cellStoreVector.elementAt(1);
-            //trip = theData.getNumericCellValue();
-           
-           for (int index=4;index<cellVectorHolder.size();index++) {
-           cellStoreVector = (Vector)dataHolder.elementAt(index);
+        }
+        
+        
+        cellStoreVector = (Vector)dataHolder.elementAt(1);
+        theData= (HSSFCell)cellStoreVector.elementAt(1);
+        tuition = theData.getNumericCellValue();
+     
+        for (int index=4;index<cellVectorHolder.size();index++) {
+            cellStoreVector = (Vector)dataHolder.elementAt(index);
             HSSFCell theName= (HSSFCell)cellStoreVector.elementAt(0);
             HSSFCell theSurname= (HSSFCell)cellStoreVector.elementAt(1);
             HSSFCell theBus= (HSSFCell)cellStoreVector.elementAt(2);
@@ -139,7 +132,7 @@ public class Spreadsheet {
             bus.add(theBus.toString());
             location.add(theLocation.toString());
             
-           }
-       }
+        }
+    }
     
 }

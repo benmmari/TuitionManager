@@ -30,12 +30,26 @@ public class Main extends javax.swing.JFrame {
     
     ConnectionManager theManager = null;
     String termChoiceText;
+    String currentUser;
     /**
      * Creates new form Main
      */
-    public Main(ConnectionManager theManager, String user) {
-initComponents();
-        if (user.equals("ADMIN")) {
+    public Main(ConnectionManager theManager, String user) {    
+    initComponents();
+    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+        int response = JOptionPane.showConfirmDialog(null, 
+            "Are you sure to exit the TuitionManager?", "Confirm close?", 
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            endSession();
+            System.exit(0);
+        }
+    }});
+    if (user.equals("ADMIN")) {
             groupButton.setEnabled(true);
             jButton2.setEnabled(true);
             fileNameL.setEnabled(true);
@@ -54,12 +68,17 @@ initComponents();
         buttonGroup3.add(fees1);
         buttonGroup3.add(fees2);
         this.theManager = theManager;
+   
+
+
         theManager.getBusCosts();
         jFileChooser1.setFileFilter(new FileFilter() {
  
     public String getDescription() {
         return "Excel Documents (*.xls)";
     }
+    
+    
  
     public boolean accept(File f) {
         if (f.isDirectory()) {
@@ -104,6 +123,9 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
 
 }
     
+    public void endSession() {
+        theManager.endSession();
+    }
     public void getDetails(String number) {
         theManager.getDetails(number, extraName, extraSurname, extraGrade);
     }
@@ -1041,6 +1063,11 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         mainPane.addTab("Payments", paymentPane);
 
         jMenu1.setText("File");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
         jMenuItem1.setText("Students");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -1117,6 +1144,7 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
 
     private void exitMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuActionPerformed
         // TODO add your handling code here:
+        endSession();
         this.dispose();
     }//GEN-LAST:event_exitMenuActionPerformed
 
@@ -1421,6 +1449,10 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         // TODO add your handling code here:
         initializeTerm("Term 3");
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     
         public void initializeTerm(String term) {
