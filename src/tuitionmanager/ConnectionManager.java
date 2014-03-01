@@ -917,6 +917,32 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         }
     }
     
+     public void updateTerm(String grade, String term) {
+        Connection conn =null;
+        PreparedStatement st = null;
+        String sql = "";
+        try {
+            conn = getConnection();
+            sql = "UPDATE Terms SET [Last-Initialized]='"+term+"'"
+                    + " WHERE Grade='"+grade+"'";
+            st = conn.prepareStatement(sql);
+            st.execute();
+        }
+        catch (SQLException e) {
+            logger.error("SQL Exception",e );
+        }
+        finally {
+            try {
+                conn.close();
+                logger.info(user +": initilized grade"+ grade+"to term "+term);
+                
+            }
+            catch(SQLException e) {
+                logger.error("SQL Exception",e );
+            }
+        }
+    }
+    
     @Override
     protected Integer doInBackground() throws Exception { //To change body of generated methods, choose Tools | Templates.
         
@@ -925,6 +951,9 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
             String innerGrade = grade;
             int rowCount= ((DefaultTableModel)table.getModel()).getRowCount();
             double overallPaid =0, overallCost =0, overallBal =0, overallTerm=0;
+            if (operation.equals("it")) {
+                updateTerm(grade, term);
+                }
             for (int index=0;index<rowCount;index++) {
                 System.out.println(index);
                 if (grade.equals("All")) {
