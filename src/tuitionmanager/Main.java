@@ -173,7 +173,6 @@ public class Main extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         studentView = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
-        executeButton = new javax.swing.JButton();
         sAdd = new javax.swing.JPanel();
         addButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -254,6 +253,7 @@ public class Main extends javax.swing.JFrame {
         buttonM = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        termDisplay = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -261,9 +261,9 @@ public class Main extends javax.swing.JFrame {
         exitMenu = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        term1Init = new javax.swing.JMenuItem();
+        term2Init = new javax.swing.JMenuItem();
+        term3Init = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -307,21 +307,12 @@ public class Main extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Class Teacher");
 
-        executeButton.setText("Execute");
-        executeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                executeButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout sViewLayout = new javax.swing.GroupLayout(sView);
         sView.setLayout(sViewLayout);
         sViewLayout.setHorizontalGroup(
             sViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sViewLayout.createSequentialGroup()
                 .addComponent(studentComboView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(executeButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel14)
                 .addGap(28, 28, 28)
@@ -333,14 +324,12 @@ public class Main extends javax.swing.JFrame {
             sViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sViewLayout.createSequentialGroup()
                 .addGroup(sViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(sViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(studentComboView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(executeButton))
+                    .addComponent(studentComboView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(sViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(teacherLabel)
                         .addComponent(jLabel14)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE))
         );
 
         studentPane.addTab("View", sView);
@@ -517,7 +506,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(486, Short.MAX_VALUE))
+                .addContainerGap(458, Short.MAX_VALUE))
         );
 
         studentPane.addTab("Add", sAdd);
@@ -658,7 +647,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paymentViewLayout.createSequentialGroup()
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))
             .addGroup(paymentViewLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel20)
@@ -1044,12 +1033,15 @@ public class Main extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)))
                 .addGap(4, 4, 4)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE))
         );
 
         paymentPane.addTab("Individual", paymentAdd);
 
         mainPane.addTab("Payments", paymentPane);
+
+        termDisplay.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        termDisplay.setText("Current Term");
 
         jMenu1.setText("File");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
@@ -1089,29 +1081,32 @@ public class Main extends javax.swing.JFrame {
 
         jMenu3.setText("Initialize New Term");
 
-        jMenuItem2.setText("Term 1");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        term1Init.setText("Term 1");
+        term1Init.setEnabled(false);
+        term1Init.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                term1InitActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem2);
+        jMenu3.add(term1Init);
 
-        jMenuItem4.setText("Term 2");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        term2Init.setText("Term 2");
+        term2Init.setEnabled(false);
+        term2Init.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                term2InitActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem4);
+        jMenu3.add(term2Init);
 
-        jMenuItem5.setText("Term 3");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        term3Init.setText("Term 3");
+        term3Init.setEnabled(false);
+        term3Init.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                term3InitActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem5);
+        jMenu3.add(term3Init);
 
         jMenuBar1.add(jMenu3);
 
@@ -1121,11 +1116,18 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPane, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(mainPane)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(termDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPane)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(termDisplay)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mainPane, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -1217,7 +1219,7 @@ public class Main extends javax.swing.JFrame {
     
     private void studentComboViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentComboViewActionPerformed
         // TODO add your handling code here:
-        
+        execute();
     }//GEN-LAST:event_studentComboViewActionPerformed
     
     public String setDate() {
@@ -1311,10 +1313,40 @@ public class Main extends javax.swing.JFrame {
         extraSurname.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
         
-    private void executeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executeButtonActionPerformed
-        // TODO add your handling code here:
-        String grade = studentComboView.getSelectedItem().toString();
+    public void disableInitOptions() {
+        term1Init.setEnabled(false);
+        term2Init.setEnabled(false);
+        term3Init.setEnabled(false);
+    }
+    
+    public void enableInitOptions(String theGrade) {
+        String term = theManager.getLastInitTerm(theGrade);
+        switch(term) {
+            case "0":term1Init.setEnabled(true);
+                break;
+            case "Term 1":term2Init.setEnabled(true);
+                break;
+            case "Term 2":term3Init.setEnabled(true);
+                break;
+            default: break;             
+        }
+    }
+    
+    public void checkInit() {
+        String labelText;
+        int termCount = theManager.getTermCount();
+        if (termCount!=1) {
+            labelText = "Warning: Grades are not all initialized to the same term!";
+        } else
+            labelText = theManager.getLastInitTerm("Grade 0");
+        termDisplay.setText(labelText);
+    }
         
+    public void execute () {
+        checkInit();
+                disableInitOptions();
+        String grade = studentComboView.getSelectedItem().toString();
+        enableInitOptions(grade);
         if(grade.equals("All") && ((DefaultTableModel)studentView.getModel()).getColumnCount()==6) {
             String [] columns = {"StudentID", "Name","Surname", "Total Due", "Paid", "Balance", "Grade"};
             ((DefaultTableModel)studentView.getModel()).setColumnIdentifiers(columns);
@@ -1324,18 +1356,12 @@ public class Main extends javax.swing.JFrame {
             }
         ProgressForm pf = new ProgressForm();
         pf.theMain();
-        
         teacherLabel.setText(theManager.getTeacher(grade));
         theManager.getStudents(studentView, grade);
-        // ConnectionManager swing1= new ConnectionManager(studentView, grade, "gs");
-        //swing1.execute();
-        //swing1= new ConnectionManager(studentView, grade, "gc");
-        //swing1.execute();
         theManager.getGradeCosts();
-        //theManager.fillCosts(studentView, grade);
         ConnectionManager swing1= new ConnectionManager(studentView,pf, grade, "fc", termChoiceText);
         swing1.execute();
-    }//GEN-LAST:event_executeButtonActionPerformed
+    }
     
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -1344,7 +1370,7 @@ public class Main extends javax.swing.JFrame {
         {
             theManager.deleteStudent(studentNumberL.getText());
             mainPane.setSelectedIndex(studentTab);
-            executeButton.doClick();
+            execute();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
     
@@ -1418,20 +1444,20 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
     
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void term1InitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_term1InitActionPerformed
         // TODO add your handling code here:
         initializeTerm("Term 1");
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_term1InitActionPerformed
     
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void term2InitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_term2InitActionPerformed
         // TODO add your handling code here:
         initializeTerm("Term 2");
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_term2InitActionPerformed
     
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void term3InitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_term3InitActionPerformed
         // TODO add your handling code here:
         initializeTerm("Term 3");
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_term3InitActionPerformed
     
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         // TODO add your handling code here:
@@ -1495,7 +1521,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox dayCombo;
     private javax.swing.JRadioButton decreaseM;
     private javax.swing.JTextField desM;
-    private javax.swing.JButton executeButton;
     private javax.swing.JMenuItem exitMenu;
     private javax.swing.JTextField extraAccount;
     private javax.swing.JTextField extraAmount;
@@ -1553,10 +1578,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1581,6 +1603,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable studentView;
     private javax.swing.JTextField surnameL;
     private javax.swing.JLabel teacherLabel;
+    private javax.swing.JMenuItem term1Init;
+    private javax.swing.JMenuItem term2Init;
+    private javax.swing.JMenuItem term3Init;
+    private javax.swing.JLabel termDisplay;
     private javax.swing.JTextField textName;
     private javax.swing.JTextField textSurname;
     private javax.swing.JTextField totalL;

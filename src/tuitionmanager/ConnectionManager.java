@@ -545,6 +545,66 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         return total;
     }
     
+        public String getLastInitTerm(String grade) {
+        Connection conn =null;
+        PreparedStatement st = null;
+        String sql ="";
+        String term="";
+        
+        try {
+            conn = getConnection();
+            sql = "SELECT [Last-Initialized] FROM Terms WHERE Grade = '"+grade+"'";
+            st = conn.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            term = rs.getString(1);
+        }
+        catch(SQLException e) {
+            System.out.println(sql);
+            logger.error("SQL Exception",e );
+        }
+        
+        finally {
+            try {
+                conn.close();
+            }
+            catch (SQLException e) {
+                logger.error("SQL Exception",e );
+            }
+        }
+        return term;
+    }
+    
+    public int getTermCount() {
+        Connection conn =null;
+        PreparedStatement st = null;
+        String sql ="";
+        int count=0;
+        
+        try {
+            conn = getConnection();
+            sql = "SELECT COUNT(*) FROM (SELECT DISTINCT [Last-Initialized] FROM Terms)";
+            st = conn.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            count = rs.getInt(1);
+        }
+        catch(SQLException e) {
+            System.out.println(sql);
+            logger.error("SQL Exception",e );
+        }
+        
+        finally {
+            try {
+                conn.close();
+            }
+            catch (SQLException e) {
+                logger.error("SQL Exception",e );
+            }
+        }
+        return count;
+    }    
+        
     public void fillStudentValues(String stuNumber, JTextField number, JTextField name, JTextField surname, JTextField grade, JTextField totalDue, JTextField paid, JTextField balance) {
         Connection conn =null;
         PreparedStatement st = null;
@@ -874,22 +934,6 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
     public boolean isNumeric(String str)
     {
         return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
-    }
-    
-    public double termBalance (String text, double amount) {
-        double newAmount =0;
-        double calcAmount = amount/3;
-        //newAmount = amount/3;
-        //System.out.println(calcAmount);
-        switch(text.charAt(text.length()-1)) {
-            case '1': newAmount=amount - (calcAmount*2);
-            break;
-            case '2': newAmount= amount - (calcAmount*1);
-            break;
-            case '3': newAmount=amount;
-            break;
-        }
-        return newAmount;
     }
     
     public void deleteStudent(String number) {
