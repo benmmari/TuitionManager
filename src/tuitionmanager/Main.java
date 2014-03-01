@@ -34,22 +34,22 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
-    public Main(ConnectionManager theManager, String user) {    
-    initComponents();
-    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-addWindowListener(new java.awt.event.WindowAdapter() {
-    @Override
-    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-        int response = JOptionPane.showConfirmDialog(null, 
-            "Are you sure to exit the TuitionManager?", "Confirm close?", 
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE);
-        if (response == JOptionPane.YES_OPTION) {
-            endSession();
-            System.exit(0);
-        }
-    }});
-    if (user.equals("ADMIN")) {
+    public Main(ConnectionManager theManager, String user) {
+        initComponents();
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                int response = JOptionPane.showConfirmDialog(null,
+                        "Are you sure to exit the TuitionManager?", "Confirm close?",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if (response == JOptionPane.YES_OPTION) {
+                    endSession();
+                    System.exit(0);
+                }
+            }});
+        if (user.equals("ADMIN")) {
             groupButton.setEnabled(true);
             jButton2.setEnabled(true);
             fileNameL.setEnabled(true);
@@ -68,48 +68,48 @@ addWindowListener(new java.awt.event.WindowAdapter() {
         buttonGroup3.add(fees1);
         buttonGroup3.add(fees2);
         this.theManager = theManager;
-   
-
-
+        
+        
+        
         theManager.getBusCosts();
         jFileChooser1.setFileFilter(new FileFilter() {
- 
-    public String getDescription() {
-        return "Excel Documents (*.xls)";
-    }
-    
-    
- 
-    public boolean accept(File f) {
-        if (f.isDirectory()) {
-            return true;
-        } else {
-            return f.getName().toLowerCase().endsWith(".xls");
-        }
-    }
-});
+            
+            public String getDescription() {
+                return "Excel Documents (*.xls)";
+            }
+            
+            
+            
+            public boolean accept(File f) {
+                if (f.isDirectory()) {
+                    return true;
+                } else {
+                    return f.getName().toLowerCase().endsWith(".xls");
+                }
+            }
+        });
         
-
-studentView.addMouseListener(new MouseAdapter() {
-    public void mousePressed(MouseEvent me) {
-       if (me.getClickCount() == 2) {   
-        please(studentView, studentView.getValueAt(studentView.getSelectedRow(), 0).toString());
-        }
-    }
-});
-
-paymentsView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-ListSelectionModel selectionModel = paymentsView.getSelectionModel();
-selectionModel.addListSelectionListener(new ListSelectionListener() {
-    public void valueChanged(ListSelectionEvent e) {
-        handleSelectionEvent(e);
-    }
-});
+        
+        studentView.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent me) {
+                if (me.getClickCount() == 2) {
+                    please(studentView, studentView.getValueAt(studentView.getSelectedRow(), 0).toString());
+                }
+            }
+        });
+        
+        paymentsView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        ListSelectionModel selectionModel = paymentsView.getSelectionModel();
+        selectionModel.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                handleSelectionEvent(e);
+            }
+        });
     }
     
     protected void handleSelectionEvent(ListSelectionEvent e) {
         try {
-        String studentNumber = paymentsView.getValueAt(paymentsView.getSelectedRow(), 1).toString();
+            String studentNumber = paymentsView.getValueAt(paymentsView.getSelectedRow(), 1).toString();
             extraDate.setText(paymentsView.getValueAt(paymentsView.getSelectedRow(), 0).toString());
             extraAmount.setText(paymentsView.getValueAt(paymentsView.getSelectedRow(), 2).toString());
             extraNumber.setText(studentNumber);
@@ -120,8 +120,8 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
             System.out.println("Error Bro");
         }
         
-
-}
+        
+    }
     
     public void endSession() {
         theManager.endSession();
@@ -129,12 +129,12 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
     public void getDetails(String number) {
         theManager.getDetails(number, extraName, extraSurname, extraGrade);
     }
-            
-
+    
+    
     public void please(JTable table, String number) {
         String studentNumber = number;
         theManager.fillStudentValues(studentNumber, studentNumberL, nameL, surnameL,gradeL, totalL, paidL, balanceL);
-         updateNumbers(studentNumber);    
+        updateNumbers(studentNumber);
         mainPane.setSelectedIndex(paymentTab);
         paymentPane.setSelectedIndex(1);
     }
@@ -146,7 +146,7 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         
         double totalPaid =0 -1 * theManager.getPaid(studentNumber);
         if (totalPaid>0) {
-        paidL.setText((-1 * totalPaid)+"");    
+            paidL.setText((-1 * totalPaid)+"");
         }
         paidL.setText(totalPaid+"");
         double balance = theManager.getBalance(studentNumber);
@@ -173,7 +173,6 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         jScrollPane1 = new javax.swing.JScrollPane();
         studentView = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
-        termChoiceBox = new javax.swing.JComboBox();
         executeButton = new javax.swing.JButton();
         sAdd = new javax.swing.JPanel();
         addButton = new javax.swing.JButton();
@@ -308,13 +307,6 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Class Teacher");
 
-        termChoiceBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Term", "Term 1", "Term 2", "Term 3" }));
-        termChoiceBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                termChoiceBoxActionPerformed(evt);
-            }
-        });
-
         executeButton.setText("Execute");
         executeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,8 +319,6 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         sViewLayout.setHorizontalGroup(
             sViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sViewLayout.createSequentialGroup()
-                .addComponent(termChoiceBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(studentComboView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(executeButton)
@@ -345,7 +335,6 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
                 .addGroup(sViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(sViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(studentComboView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(termChoiceBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(executeButton))
                     .addGroup(sViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(teacherLabel)
@@ -1141,18 +1130,18 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void exitMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuActionPerformed
         // TODO add your handling code here:
         endSession();
         this.dispose();
     }//GEN-LAST:event_exitMenuActionPerformed
-
+    
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         mainPane.setSelectedIndex(studentTab);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int value = jFileChooser1.showOpenDialog(this);
@@ -1163,23 +1152,23 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
             fileNameL.setText(fileName);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
     private void gradeComboPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_gradeComboPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_gradeComboPropertyChange
-
+    
     private void textSurnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSurnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textSurnameActionPerformed
-
+    
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // T add your handling code here:
-
+        
         if (individualButton.isSelected()) {
             if (!textName.equals("") && !textName.equals("") && !gradeCombo.getSelectedItem().toString().equals("Select Grade") && buttonGroup3.getSelection()!=null) {
                 
                 if (fees1.isSelected()){
-                        theManager.addToStudents(textName.getText(),textSurname.getText(), gradeCombo.getSelectedItem().toString(),theManager.getCost(gradeCombo.getSelectedItem().toString()));
+                    theManager.addToStudents(textName.getText(),textSurname.getText(), gradeCombo.getSelectedItem().toString(),theManager.getCost(gradeCombo.getSelectedItem().toString()));
                 } else {
                     String fees = JOptionPane.showInputDialog("Please enter the tuition amount that the student will have to pay for the remainder of the TERM: ");
                     if (theManager.isNumeric(fees)){
@@ -1191,89 +1180,89 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
                     }
                     
                 }
-            JOptionPane.showMessageDialog(this,"Student Added successfully");
-            textName.setText("");
-            textSurname.setText("");
-            gradeCombo.setSelectedIndex(0);
+                JOptionPane.showMessageDialog(this,"Student Added successfully");
+                textName.setText("");
+                textSurname.setText("");
+                gradeCombo.setSelectedIndex(0);
             }
             else {
                 JOptionPane.showMessageDialog(this,"Please enter all information pertaining to the student");
             }
         } else
-        if (groupButton.isSelected()) {
-            
-            if (!fileNameL.getText().equals("Filename") && !gradeCombo2.getSelectedItem().toString().equals("Select Grade") ) {
-                ProgressForm pf = new ProgressForm();
-                 pf.theMain();
-                Spreadsheet sheet = new Spreadsheet(fileNameL.getText(),gradeCombo2.getSelectedItem().toString());
-                String grade = gradeCombo2.getSelectedItem().toString();
-                for (int counter=0;counter<sheet.getTeachers().size();counter++) {
-                theManager.addToTeachers(grade, sheet.getTeachers().get(counter));
+            if (groupButton.isSelected()) {
+                
+                if (!fileNameL.getText().equals("Filename") && !gradeCombo2.getSelectedItem().toString().equals("Select Grade") ) {
+                    ProgressForm pf = new ProgressForm();
+                    pf.theMain();
+                    Spreadsheet sheet = new Spreadsheet(fileNameL.getText(),gradeCombo2.getSelectedItem().toString());
+                    String grade = gradeCombo2.getSelectedItem().toString();
+                    for (int counter=0;counter<sheet.getTeachers().size();counter++) {
+                        theManager.addToTeachers(grade, sheet.getTeachers().get(counter));
+                    }
+                    
+                    System.out.println(sheet.length+"!!!!!!!!!!!!!!!!!!!!!");
+                    theManager.addToClasses(grade, sheet.tuition, sheet.trip);
+                    for (int index=0;index<sheet.length;index++) {
+                        theManager.addToStudents(sheet.names.get(index), sheet.surnames.get(index),grade);
+                    }
+                    pf.close();
+                }
+                else {
+                    JOptionPane.showMessageDialog(this,"Please enter all information pertaining to the List of student");
                 }
                 
-                System.out.println(sheet.length+"!!!!!!!!!!!!!!!!!!!!!");
-                theManager.addToClasses(grade, sheet.tuition, sheet.trip);
-                for (int index=0;index<sheet.length;index++) {
-                    theManager.addToStudents(sheet.names.get(index), sheet.surnames.get(index),grade);
-                }
-                pf.close();
             }
-            else {
-                JOptionPane.showMessageDialog(this,"Please enter all information pertaining to the List of student");
-            }
-
-        }
-
+        
     }//GEN-LAST:event_addButtonActionPerformed
-
+    
     private void studentComboViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentComboViewActionPerformed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_studentComboViewActionPerformed
-
+    
     public String setDate() {
         return yearCombo.getSelectedItem().toString()+"-"+date(monthCombo.getSelectedItem().toString())+"-"+dayCombo.getSelectedItem().toString();
     }
     
     public String date(String date)
     {
-    if (date.equals("JAN")) {
-        return "01";
-    } else
-        if (date.equals("FEB")) {
-        return "02";
-    }  else
-            if (date.equals("MAR")) {
-        return "03";
-    } else
-                if (date.equals("APR")) {
-        return "04";
-    } else
-       if (date.equals("MAY")) {
-        return "05";
-    } else
-       if (date.equals("JUN")) {
-        return "06";
-    } else
-       if (date.equals("JUL")) {
-        return "07";
-    } else
-       if (date.equals("AUG")) {
-        return "08";
-    } else
-       if (date.equals("SEP")) {
-        return "09";
-    } else
-       if (date.equals("OCT")) {
-        return "10";
-    }  else
-       if (date.equals("NOV")) {
-        return "11";
-    } else
-         if (date.equals("DEC")) {
-        return "12";
-    }
-    return null;
+        if (date.equals("JAN")) {
+            return "01";
+        } else
+            if (date.equals("FEB")) {
+                return "02";
+            }  else
+                if (date.equals("MAR")) {
+                    return "03";
+                } else
+                    if (date.equals("APR")) {
+                        return "04";
+                    } else
+                        if (date.equals("MAY")) {
+                            return "05";
+                        } else
+                            if (date.equals("JUN")) {
+                                return "06";
+                            } else
+                                if (date.equals("JUL")) {
+                                    return "07";
+                                } else
+                                    if (date.equals("AUG")) {
+                                        return "08";
+                                    } else
+                                        if (date.equals("SEP")) {
+                                            return "09";
+                                        } else
+                                            if (date.equals("OCT")) {
+                                                return "10";
+                                            }  else
+                                                if (date.equals("NOV")) {
+                                                    return "11";
+                                                } else
+                                                    if (date.equals("DEC")) {
+                                                        return "12";
+                                                    }
+        return null;
     }
     
     
@@ -1281,38 +1270,38 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         // TODO add your handling code here:
         if (!accountCombo.getSelectedItem().toString().equalsIgnoreCase("Select Account") && theManager.isNumeric(amountL.getText()) && !dayCombo.getSelectedItem().toString().equals("Day") && !monthCombo.getSelectedItem().toString().equals("Month") && !yearCombo.getSelectedItem().toString().equals("Year")) {
             int reply = JOptionPane.showConfirmDialog(null, "Confirm Payment of E" +amountL.getText() +" by "+nameL.getText()+" "+surnameL.getText(), "Confirm",  JOptionPane.YES_NO_OPTION);
-        if (reply == JOptionPane.YES_OPTION)
-        {
-        theManager.addPayment(studentNumberL.getText(),(-1 * Double.parseDouble(amountL.getText())),accountCombo.getSelectedItem().toString(),setDate());
-        //dateL.setText(theManager.getCurrentDate().toString());
-        ((DefaultTableModel)studentPaymentTable.getModel()).setRowCount(0);
-        theManager.getStudentPayments(studentPaymentTable, studentNumberL.getText() );
-        updateNumbers(studentNumberL.getText());    
-        JOptionPane.showMessageDialog(this,"Payment added successfully.","Success", JOptionPane.INFORMATION_MESSAGE);
-        } 
-        } else {
-                JOptionPane.showMessageDialog(this,"Please enter correct information for payment");
+            if (reply == JOptionPane.YES_OPTION)
+            {
+                theManager.addPayment(studentNumberL.getText(),(-1 * Double.parseDouble(amountL.getText())),accountCombo.getSelectedItem().toString(),setDate());
+                //dateL.setText(theManager.getCurrentDate().toString());
+                ((DefaultTableModel)studentPaymentTable.getModel()).setRowCount(0);
+                theManager.getStudentPayments(studentPaymentTable, studentNumberL.getText() );
+                updateNumbers(studentNumberL.getText());
+                JOptionPane.showMessageDialog(this,"Payment added successfully.","Success", JOptionPane.INFORMATION_MESSAGE);
             }
-          amountL.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this,"Please enter correct information for payment");
+        }
+        amountL.setText("");
         dayCombo.setSelectedIndex(0);
         monthCombo.setSelectedIndex(0);
         yearCombo.setSelectedIndex(0);
         accountCombo.setSelectedIndex(0);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:'
-            mainPane.setSelectedIndex(paymentTab);
-            
+        mainPane.setSelectedIndex(paymentTab);
+        
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-
+    
     private void paymentViewFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_paymentViewFocusGained
         // TODO add your handling code here
-
+        
     }//GEN-LAST:event_paymentViewFocusGained
-
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:    
+        // TODO add your handling code here:
         theManager.getAllPayments(paymentsView);
         extraDate.setText("");
         extraAmount.setText("");
@@ -1321,39 +1310,33 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         extraName.setText("");
         extraSurname.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void termChoiceBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_termChoiceBoxActionPerformed
-        // TODO add your handling code here:
-        termChoiceText = termChoiceBox.getSelectedItem().toString();
-     
-    }//GEN-LAST:event_termChoiceBoxActionPerformed
-
+        
     private void executeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executeButtonActionPerformed
         // TODO add your handling code here:
         String grade = studentComboView.getSelectedItem().toString();
-       
+        
         if(grade.equals("All") && ((DefaultTableModel)studentView.getModel()).getColumnCount()==6) {
             String [] columns = {"StudentID", "Name","Surname", "Total Due", "Paid", "Balance", "Grade"};
             ((DefaultTableModel)studentView.getModel()).setColumnIdentifiers(columns);
-        } else 
-        if (!grade.equals("All") && ((DefaultTableModel)studentView.getModel()).getColumnCount() > 6) {
-            ((DefaultTableModel)studentView.getModel()).setColumnCount(6);
-                    }
+        } else
+            if (!grade.equals("All") && ((DefaultTableModel)studentView.getModel()).getColumnCount() > 6) {
+                ((DefaultTableModel)studentView.getModel()).setColumnCount(6);
+            }
         ProgressForm pf = new ProgressForm();
         pf.theMain();
-       
-       teacherLabel.setText(theManager.getTeacher(grade));
+        
+        teacherLabel.setText(theManager.getTeacher(grade));
         theManager.getStudents(studentView, grade);
-       // ConnectionManager swing1= new ConnectionManager(studentView, grade, "gs");
+        // ConnectionManager swing1= new ConnectionManager(studentView, grade, "gs");
         //swing1.execute();
-         //swing1= new ConnectionManager(studentView, grade, "gc");
+        //swing1= new ConnectionManager(studentView, grade, "gc");
         //swing1.execute();
         theManager.getGradeCosts();
         //theManager.fillCosts(studentView, grade);
         ConnectionManager swing1= new ConnectionManager(studentView,pf, grade, "fc", termChoiceText);
         swing1.execute();
     }//GEN-LAST:event_executeButtonActionPerformed
-
+    
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to permanently delete " +nameL.getText()+" "+surnameL.getText()+"\n This should only be done if the student does not return in the begiining of the year.", "Confirm Delete",  JOptionPane.YES_NO_OPTION);
@@ -1364,7 +1347,7 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
             executeButton.doClick();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
-
+    
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to block the account of " +nameL.getText()+" "+surnameL.getText()+"\n Please ensure they have finished paying their remaining school fees first.", "Confirm Account block",  JOptionPane.YES_NO_OPTION);
@@ -1372,56 +1355,56 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         {
         }
     }//GEN-LAST:event_jButton6ActionPerformed
-
+    
     private void extraNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extraNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_extraNameActionPerformed
-
+    
     private void extraNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extraNumberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_extraNumberActionPerformed
-
+    
     private void jScrollPane4PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jScrollPane4PropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_jScrollPane4PropertyChange
-
+    
     private void paymentsViewPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_paymentsViewPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_paymentsViewPropertyChange
-
+    
     private void buttonMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMActionPerformed
         // TODO add your handling code here:
         if (theManager.isNumeric(amountM.getText()) && !desM.getText().isEmpty()) {
             double amount = Double.parseDouble(amountM.getText());
             if (decreaseM.isSelected()) {
                 amount = -amount;}
-                    int reply = JOptionPane.showConfirmDialog(null, "Confirm modification of " +amount +" on account of " +nameL.getText()+" "+surnameL.getText(), "Confirm",  JOptionPane.YES_NO_OPTION);
-        if (reply == JOptionPane.YES_OPTION)
-        {
-           theManager.addPayment(studentNumberL.getText(), amount, "Admin: " + desM.getText());
-           ((DefaultTableModel)studentPaymentTable.getModel()).setRowCount(0);
-        theManager.getStudentPayments(studentPaymentTable, studentNumberL.getText() );
-        updateNumbers(studentNumberL.getText());    
-        JOptionPane.showMessageDialog(this,"Account modified successfully.","Success", JOptionPane.INFORMATION_MESSAGE);
-           
-        }
-        amountM.setText("");
-        desM.setText("");
-        buttonGroup2.clearSelection();
+            int reply = JOptionPane.showConfirmDialog(null, "Confirm modification of " +amount +" on account of " +nameL.getText()+" "+surnameL.getText(), "Confirm",  JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION)
+            {
+                theManager.addPayment(studentNumberL.getText(), amount, "Admin: " + desM.getText());
+                ((DefaultTableModel)studentPaymentTable.getModel()).setRowCount(0);
+                theManager.getStudentPayments(studentPaymentTable, studentNumberL.getText() );
+                updateNumbers(studentNumberL.getText());
+                JOptionPane.showMessageDialog(this,"Account modified successfully.","Success", JOptionPane.INFORMATION_MESSAGE);
+                
+            }
+            amountM.setText("");
+            desM.setText("");
+            buttonGroup2.clearSelection();
             
             
             
         }
     }//GEN-LAST:event_buttonMActionPerformed
-
+    
     private void increaseMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseMActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_increaseMActionPerformed
-
+    
     private void balanceLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceLActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_balanceLActionPerformed
-
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         String payment = studentPaymentTable.getValueAt(studentPaymentTable.getSelectedRow(), 2).toString();
@@ -1429,40 +1412,40 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to permanently delete transaction of "+payment+ " on the account of "+nameL.getText()+" "+surnameL.getText(), "Confirm Payment Delete",  JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION)
         {
-        String paymentID = studentPaymentTable.getValueAt(studentPaymentTable.getSelectedRow(), 0).toString();
-        theManager.deletePayment(paymentID);
-        please(studentView, studentView.getValueAt(studentView.getSelectedRow(), 0).toString());
+            String paymentID = studentPaymentTable.getValueAt(studentPaymentTable.getSelectedRow(), 0).toString();
+            theManager.deletePayment(paymentID);
+            please(studentView, studentView.getValueAt(studentView.getSelectedRow(), 0).toString());
         }
     }//GEN-LAST:event_jButton4ActionPerformed
-
+    
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         initializeTerm("Term 1");
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
+    
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
         initializeTerm("Term 2");
     }//GEN-LAST:event_jMenuItem4ActionPerformed
-
+    
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
         initializeTerm("Term 3");
     }//GEN-LAST:event_jMenuItem5ActionPerformed
-
+    
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
-
     
-        public void initializeTerm(String term) {
+    
+    public void initializeTerm(String term) {
         String grade = studentComboView.getSelectedItem().toString();
         ProgressForm pf = new ProgressForm();
         pf.theMain();
         ConnectionManager swing1= new ConnectionManager(studentView,pf, grade, "it", term);
         swing1.execute();
         
-        }
+    }
     
     /**
      * @param args the command line arguments
@@ -1471,7 +1454,7 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -1490,7 +1473,7 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1598,7 +1581,6 @@ selectionModel.addListSelectionListener(new ListSelectionListener() {
     private javax.swing.JTable studentView;
     private javax.swing.JTextField surnameL;
     private javax.swing.JLabel teacherLabel;
-    private javax.swing.JComboBox termChoiceBox;
     private javax.swing.JTextField textName;
     private javax.swing.JTextField textSurname;
     private javax.swing.JTextField totalL;

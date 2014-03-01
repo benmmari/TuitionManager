@@ -151,8 +151,6 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="termChoiceBox" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="studentComboView" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="executeButton" min="-2" max="-2" attributes="0"/>
@@ -171,7 +169,6 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="studentComboView" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="termChoiceBox" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="executeButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -285,21 +282,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Class Teacher"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JComboBox" name="termChoiceBox">
-                  <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Select Term"/>
-                        <StringItem index="1" value="Term 1"/>
-                        <StringItem index="2" value="Term 2"/>
-                        <StringItem index="3" value="Term 3"/>
-                      </StringArray>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="termChoiceBoxActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="executeButton">
                   <Properties>
