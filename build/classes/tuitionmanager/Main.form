@@ -309,7 +309,7 @@
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="391" max="32767" attributes="0"/>
+                          <EmptySpace pref="397" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -486,12 +486,12 @@
                     </Component>
                     <Component class="javax.swing.JRadioButton" name="fees1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Full School Fees"/>
+                        <Property name="text" type="java.lang.String" value="Full Term Fees"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JRadioButton" name="fees2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Partial School Fees"/>
+                        <Property name="text" type="java.lang.String" value="Partial Term Fees"/>
                       </Properties>
                     </Component>
                   </SubComponents>

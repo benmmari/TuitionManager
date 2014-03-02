@@ -257,7 +257,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         ((DefaultTableModel)table.getModel()).setRowCount(0);
         try {
             conn = getConnection();
-            sql = "SELECT * FROM Payments WHERE Account NOT LIKE 'Tuition%' AND Account <> 'Bus Fees' ORDER BY Date";
+            sql = "SELECT * FROM Payments WHERE Account NOT LIKE 'Tuition%' AND Account NOT LIKE 'Partial tuition%' AND Account <> 'Bus Fees' ORDER BY Date";
             st = conn.prepareStatement(sql);
             System.out.println(sql);
             ResultSet rs  = st.executeQuery();

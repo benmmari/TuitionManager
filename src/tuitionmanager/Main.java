@@ -68,6 +68,7 @@ public class Main extends javax.swing.JFrame {
         buttonGroup3.add(fees1);
         buttonGroup3.add(fees2);
         this.theManager = theManager;
+        theManager.getGradeCosts();
         
         
         
@@ -371,9 +372,9 @@ public class Main extends javax.swing.JFrame {
         individualButton.setSelected(true);
         individualButton.setText("Individual");
 
-        fees1.setText("Full School Fees");
+        fees1.setText("Full Term Fees");
 
-        fees2.setText("Partial School Fees");
+        fees2.setText("Partial Term Fees");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -491,7 +492,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(294, 294, 294)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(391, Short.MAX_VALUE))
+                .addContainerGap(397, Short.MAX_VALUE))
             .addGroup(sAddLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1170,7 +1171,7 @@ public class Main extends javax.swing.JFrame {
             if (!textName.equals("") && !textName.equals("") && !gradeCombo.getSelectedItem().toString().equals("Select Grade") && buttonGroup3.getSelection()!=null) {
                 
                 if (fees1.isSelected()){
-                    theManager.addToStudents(textName.getText(),textSurname.getText(), gradeCombo.getSelectedItem().toString(),theManager.getCost(gradeCombo.getSelectedItem().toString()));
+                    theManager.addToStudents(textName.getText(),textSurname.getText(), gradeCombo.getSelectedItem().toString(),(theManager.getCost(gradeCombo.getSelectedItem().toString()))/3);
                 } else {
                     String fees = JOptionPane.showInputDialog("Please enter the tuition amount that the student will have to pay for the remainder of the TERM: ");
                     if (theManager.isNumeric(fees)){
@@ -1358,7 +1359,6 @@ public class Main extends javax.swing.JFrame {
         pf.theMain();
         teacherLabel.setText(theManager.getTeacher(grade));
         theManager.getStudents(studentView, grade);
-        theManager.getGradeCosts();
         ConnectionManager swing1= new ConnectionManager(studentView,pf, grade, "fc", termChoiceText);
         swing1.execute();
     }

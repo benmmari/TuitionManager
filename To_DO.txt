@@ -1,6 +1,21 @@
 1. Delete payments. Done...add confirmation box.
 2. Modify Amounts/Dates/Account - Input dialogue box.
-3. Logging.... proper logging. 
+3. Logging.... proper logging. -Basically done 
 4. Format numbers, 2 decimal places..
 5. Database online so that it can be accessed from multiple locations..or atleaast locally on the network! 
 yes beautiful idea...
+6. Ensure can only initialize the up and coming term.
+7. Term rollover what happens with balances when we initialize a new term.
+	We can have a table that has the grade and the last initialized term stored to check.
+	i.e initialize term 3, will be grayed if term 2 has not been initialized yet.	
+		there is still the option of making this functionality time based, but i think for now that manual is better//.
+	DONE
+8. Names capital letters on first letter.
+9. Password entry on Initialize term,  Authourization of current user.
+10. User roles eventually....yes?
+11. REad up on database migrations.
+12. Reporting...need to make a lot of different reports
+	-sWho still owes school fees, and how much.
+	-Statements of accounts for the students.
+		
+	
