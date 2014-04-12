@@ -1299,19 +1299,20 @@
                     <Component class="javax.swing.JComboBox" name="monthCombo">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="12">
+                          <StringArray count="13">
                             <StringItem index="0" value="Month"/>
                             <StringItem index="1" value="JAN"/>
                             <StringItem index="2" value="FEB"/>
-                            <StringItem index="3" value="APR"/>
-                            <StringItem index="4" value="MAY"/>
-                            <StringItem index="5" value="JUN"/>
-                            <StringItem index="6" value="JUL"/>
-                            <StringItem index="7" value="AUG"/>
-                            <StringItem index="8" value="SEP"/>
-                            <StringItem index="9" value="OCT"/>
-                            <StringItem index="10" value="NOV"/>
-                            <StringItem index="11" value="DEC"/>
+                            <StringItem index="3" value="MAR"/>
+                            <StringItem index="4" value="APR"/>
+                            <StringItem index="5" value="MAY"/>
+                            <StringItem index="6" value="JUN"/>
+                            <StringItem index="7" value="JUL"/>
+                            <StringItem index="8" value="AUG"/>
+                            <StringItem index="9" value="SEP"/>
+                            <StringItem index="10" value="OCT"/>
+                            <StringItem index="11" value="NOV"/>
+                            <StringItem index="12" value="DEC"/>
                           </StringArray>
                         </Property>
                       </Properties>

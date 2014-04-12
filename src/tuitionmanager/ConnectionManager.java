@@ -72,7 +72,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         String password = ""; //leave blank if none
         try {
             Class.forName(driver);
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) { 
             logger.error("Class not found",e );
             
         }

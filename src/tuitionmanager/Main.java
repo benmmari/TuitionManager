@@ -756,7 +756,7 @@ public class Main extends javax.swing.JFrame {
 
         dayCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Day", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
-        monthCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Month", "JAN", "FEB", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" }));
+        monthCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Month", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" }));
 
         yearCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Year", "2013", "2014" }));
 
