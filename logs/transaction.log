@@ -2109,3 +2109,21 @@ java.sql.SQLException: [Microsoft][ODBC Microsoft Access Driver] The Microsoft A
 13:09:28.720 INFO  - ADMIN: retrieve student info
 13:09:28.755 INFO  - ADMIN: retrieve student numbers 648
 13:09:34.294 INFO  - ADMIN: retrieve student numbers 648
+13:11:09.973 INFO  - ADMIN logged off. Session over.
+14:21:14.825 INFO  - ADMIN logged in. Session begin.
+14:21:14.943 INFO  - ADMIN: retrieve student numbers 648
+14:21:52.525 INFO  - ADMIN logged off. Session over.
+14:22:30.158 INFO  - ADMIN logged in. Session begin.
+14:22:30.252 INFO  - ADMIN: retrieve student numbers 648
+14:22:52.091 INFO  - ADMIN: retrieve student info
+14:22:52.135 INFO  - ADMIN: retrieve student numbers 648
+14:23:20.424 INFO  - ADMIN: retrieve student numbers 648
+14:26:10.267 INFO  - ADMIN logged off. Session over.
+14:27:26.199 INFO  - ADMIN logged in. Session begin.
+14:27:26.303 INFO  - ADMIN: retrieve student numbers 648
+14:27:35.763 INFO  - ADMIN: retrieve student info
+14:27:35.801 INFO  - ADMIN: retrieve student numbers 648
+14:27:49.515 INFO  - ADMIN: retrieve student numbers 648
+14:50:42.445 INFO  - ADMIN: retrieve student numbers 648
+14:59:50.218 INFO  - ADMIN: retrieve student numbers 648
+15:12:32.825 INFO  - ADMIN logged off. Session over.
