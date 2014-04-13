@@ -1985,3 +1985,127 @@ java.sql.SQLException: [Microsoft][ODBC Microsoft Access Driver] Syntax error (m
 12:21:22.237 INFO  - ADMIN: retrieve student info
 12:21:22.275 INFO  - ADMIN: retrieve student numbers 719
 12:21:26.733 INFO  - ADMIN: retrieve student numbers 719
+12:35:15.845 INFO  - ADMIN logged off. Session over.
+12:35:39.806 INFO  - ADMIN logged in. Session begin.
+12:35:39.936 INFO  - ADMIN: retrieve student numbers 719
+12:35:49.793 INFO  - ADMIN: retrieve student info
+12:35:49.842 INFO  - ADMIN: retrieve student numbers 719
+12:37:57.638 INFO  - ADMIN logged off. Session over.
+12:38:13.842 INFO  - ADMIN logged in. Session begin.
+12:48:09.181 INFO  - ADMIN logged in. Session begin.
+12:48:09.321 INFO  - ADMIN: retrieve student numbers 648
+12:48:18.741 ERROR - SQL Exception
+java.sql.SQLException: [Microsoft][ODBC Microsoft Access Driver] The Microsoft Access database engine cannot find the input table or query 'Terms'. Make sure it exists and that its name is spelled correctly.
+	at sun.jdbc.odbc.JdbcOdbc.createSQLException(JdbcOdbc.java:6956) ~[?:1.7.0_25]
+	at sun.jdbc.odbc.JdbcOdbc.standardError(JdbcOdbc.java:7113) ~[?:1.7.0_25]
+	at sun.jdbc.odbc.JdbcOdbc.SQLExecute(JdbcOdbc.java:3148) ~[?:1.7.0_25]
+	at sun.jdbc.odbc.JdbcOdbcPreparedStatement.execute(JdbcOdbcPreparedStatement.java:215) ~[?:1.7.0_25]
+	at sun.jdbc.odbc.JdbcOdbcPreparedStatement.executeQuery(JdbcOdbcPreparedStatement.java:90) ~[?:1.7.0_25]
+	at tuitionmanager.ConnectionManager.getTermCount(ConnectionManager.java:588) [classes/:?]
+	at tuitionmanager.Main.checkInit(Main.java:1364) [classes/:?]
+	at tuitionmanager.Main.execute(Main.java:1373) [classes/:?]
+	at tuitionmanager.Main.studentComboViewActionPerformed(Main.java:1249) [classes/:?]
+	at tuitionmanager.Main.access$100(Main.java:30) [classes/:?]
+	at tuitionmanager.Main$5.actionPerformed(Main.java:281) [classes/:?]
+	at javax.swing.JComboBox.fireActionEvent(JComboBox.java:1260) [?:1.7.0_25]
+	at javax.swing.JComboBox.setSelectedItem(JComboBox.java:588) [?:1.7.0_25]
+	at javax.swing.JComboBox.setSelectedIndex(JComboBox.java:624) [?:1.7.0_25]
+	at javax.swing.plaf.basic.BasicComboPopup$Handler.mouseReleased(BasicComboPopup.java:835) [?:1.7.0_25]
+	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:290) [?:1.7.0_25]
+	at java.awt.Component.processMouseEvent(Component.java:6505) [?:1.7.0_25]
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3321) [?:1.7.0_25]
+	at javax.swing.plaf.basic.BasicComboPopup$1.processMouseEvent(BasicComboPopup.java:499) [?:1.7.0_25]
+	at java.awt.Component.processEvent(Component.java:6270) [?:1.7.0_25]
+	at java.awt.Container.processEvent(Container.java:2229) [?:1.7.0_25]
+	at java.awt.Component.dispatchEventImpl(Component.java:4861) [?:1.7.0_25]
+	at java.awt.Container.dispatchEventImpl(Container.java:2287) [?:1.7.0_25]
+	at java.awt.Component.dispatchEvent(Component.java:4687) [?:1.7.0_25]
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4832) [?:1.7.0_25]
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4492) [?:1.7.0_25]
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4422) [?:1.7.0_25]
+	at java.awt.Container.dispatchEventImpl(Container.java:2273) [?:1.7.0_25]
+	at java.awt.Window.dispatchEventImpl(Window.java:2719) [?:1.7.0_25]
+	at java.awt.Component.dispatchEvent(Component.java:4687) [?:1.7.0_25]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:735) [?:1.7.0_25]
+	at java.awt.EventQueue.access$200(EventQueue.java:103) [?:1.7.0_25]
+	at java.awt.EventQueue$3.run(EventQueue.java:694) [?:1.7.0_25]
+	at java.awt.EventQueue$3.run(EventQueue.java:692) [?:1.7.0_25]
+	at java.security.AccessController.doPrivileged(Native Method) [?:1.7.0_25]
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:76) [?:1.7.0_25]
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:87) [?:1.7.0_25]
+	at java.awt.EventQueue$4.run(EventQueue.java:708) [?:1.7.0_25]
+	at java.awt.EventQueue$4.run(EventQueue.java:706) [?:1.7.0_25]
+	at java.security.AccessController.doPrivileged(Native Method) [?:1.7.0_25]
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:76) [?:1.7.0_25]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:705) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:242) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:161) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:150) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:146) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:138) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:91) [?:1.7.0_25]
+12:48:18.768 ERROR - SQL Exception
+java.sql.SQLException: [Microsoft][ODBC Microsoft Access Driver] The Microsoft Access database engine cannot find the input table or query 'Terms'. Make sure it exists and that its name is spelled correctly.
+	at sun.jdbc.odbc.JdbcOdbc.createSQLException(JdbcOdbc.java:6956) ~[?:1.7.0_25]
+	at sun.jdbc.odbc.JdbcOdbc.standardError(JdbcOdbc.java:7113) ~[?:1.7.0_25]
+	at sun.jdbc.odbc.JdbcOdbc.SQLExecute(JdbcOdbc.java:3148) ~[?:1.7.0_25]
+	at sun.jdbc.odbc.JdbcOdbcPreparedStatement.execute(JdbcOdbcPreparedStatement.java:215) ~[?:1.7.0_25]
+	at sun.jdbc.odbc.JdbcOdbcPreparedStatement.executeQuery(JdbcOdbcPreparedStatement.java:90) ~[?:1.7.0_25]
+	at tuitionmanager.ConnectionManager.getLastInitTerm(ConnectionManager.java:558) [classes/:?]
+	at tuitionmanager.Main.enableInitOptions(Main.java:1350) [classes/:?]
+	at tuitionmanager.Main.execute(Main.java:1376) [classes/:?]
+	at tuitionmanager.Main.studentComboViewActionPerformed(Main.java:1249) [classes/:?]
+	at tuitionmanager.Main.access$100(Main.java:30) [classes/:?]
+	at tuitionmanager.Main$5.actionPerformed(Main.java:281) [classes/:?]
+	at javax.swing.JComboBox.fireActionEvent(JComboBox.java:1260) [?:1.7.0_25]
+	at javax.swing.JComboBox.setSelectedItem(JComboBox.java:588) [?:1.7.0_25]
+	at javax.swing.JComboBox.setSelectedIndex(JComboBox.java:624) [?:1.7.0_25]
+	at javax.swing.plaf.basic.BasicComboPopup$Handler.mouseReleased(BasicComboPopup.java:835) [?:1.7.0_25]
+	at java.awt.AWTEventMulticaster.mouseReleased(AWTEventMulticaster.java:290) [?:1.7.0_25]
+	at java.awt.Component.processMouseEvent(Component.java:6505) [?:1.7.0_25]
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3321) [?:1.7.0_25]
+	at javax.swing.plaf.basic.BasicComboPopup$1.processMouseEvent(BasicComboPopup.java:499) [?:1.7.0_25]
+	at java.awt.Component.processEvent(Component.java:6270) [?:1.7.0_25]
+	at java.awt.Container.processEvent(Container.java:2229) [?:1.7.0_25]
+	at java.awt.Component.dispatchEventImpl(Component.java:4861) [?:1.7.0_25]
+	at java.awt.Container.dispatchEventImpl(Container.java:2287) [?:1.7.0_25]
+	at java.awt.Component.dispatchEvent(Component.java:4687) [?:1.7.0_25]
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4832) [?:1.7.0_25]
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4492) [?:1.7.0_25]
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4422) [?:1.7.0_25]
+	at java.awt.Container.dispatchEventImpl(Container.java:2273) [?:1.7.0_25]
+	at java.awt.Window.dispatchEventImpl(Window.java:2719) [?:1.7.0_25]
+	at java.awt.Component.dispatchEvent(Component.java:4687) [?:1.7.0_25]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:735) [?:1.7.0_25]
+	at java.awt.EventQueue.access$200(EventQueue.java:103) [?:1.7.0_25]
+	at java.awt.EventQueue$3.run(EventQueue.java:694) [?:1.7.0_25]
+	at java.awt.EventQueue$3.run(EventQueue.java:692) [?:1.7.0_25]
+	at java.security.AccessController.doPrivileged(Native Method) [?:1.7.0_25]
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:76) [?:1.7.0_25]
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:87) [?:1.7.0_25]
+	at java.awt.EventQueue$4.run(EventQueue.java:708) [?:1.7.0_25]
+	at java.awt.EventQueue$4.run(EventQueue.java:706) [?:1.7.0_25]
+	at java.security.AccessController.doPrivileged(Native Method) [?:1.7.0_25]
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:76) [?:1.7.0_25]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:705) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:242) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:161) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:150) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:146) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:138) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:91) [?:1.7.0_25]
+12:48:19.771 INFO  - ADMIN: retrieve student info
+12:48:19.845 INFO  - ADMIN: retrieve student numbers 648
+12:48:31.350 INFO  - ADMIN: retrieve student numbers 648
+12:53:48.448 INFO  - ADMIN logged off. Session over.
+12:54:21.635 INFO  - ADMIN logged in. Session begin.
+12:54:21.761 INFO  - ADMIN: retrieve student numbers 648
+12:54:31.678 INFO  - ADMIN: retrieve student info
+12:54:31.721 INFO  - ADMIN: retrieve student numbers 648
+12:54:42.871 INFO  - ADMIN: retrieve student numbers 648
+13:02:30.704 INFO  - ADMIN logged off. Session over.
+13:08:16.664 INFO  - ADMIN logged in. Session begin.
+13:08:16.770 INFO  - ADMIN: retrieve student numbers 648
+13:09:28.720 INFO  - ADMIN: retrieve student info
+13:09:28.755 INFO  - ADMIN: retrieve student numbers 648
+13:09:34.294 INFO  - ADMIN: retrieve student numbers 648

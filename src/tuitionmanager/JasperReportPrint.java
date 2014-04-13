@@ -70,6 +70,20 @@ public class JasperReportPrint {
     }
     
     public void printStudent(String grade, String student) {
+        try {
+            String newPath = folderPath+grade;
+            HashMap map = new HashMap();
+            map.put("student_number", student);
+            JasperPrint print = JasperFillManager.fillReport(jasperJasper, map, con);
+
+            JRPdfExporter pdfExporter = new JRPdfExporter();
+            pdfExporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+            pdfExporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, newPath+"/"+student+".pdf");
+            pdfExporter.exportReport(); 
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
         
     }
     

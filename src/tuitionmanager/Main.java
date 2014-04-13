@@ -258,6 +258,7 @@ public class Main extends javax.swing.JFrame {
         buttonM = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         termDisplay = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -949,6 +950,13 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jButton8.setText("Generate Report");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout paymentAddLayout = new javax.swing.GroupLayout(paymentAdd);
         paymentAdd.setLayout(paymentAddLayout);
         paymentAddLayout.setHorizontalGroup(
@@ -993,6 +1001,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(surnameL, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(gradeL, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(balanceL))
+                .addGap(254, 254, 254)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1036,7 +1046,8 @@ public class Main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(paymentAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
-                            .addComponent(balanceL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(balanceL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton8)))
                     .addGroup(paymentAddLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(paymentAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1487,6 +1498,14 @@ public class Main extends javax.swing.JFrame {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        String grade= gradeL.getText();
+        String studentNumber = studentNumberL.getText();
+        jrp.printStudent(grade, studentNumber);
+
+    }//GEN-LAST:event_jButton8ActionPerformed
     
     
     public void initializeTerm(String term) {
@@ -1570,6 +1589,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
