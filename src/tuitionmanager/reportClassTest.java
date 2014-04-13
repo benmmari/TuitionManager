@@ -25,7 +25,7 @@ public class reportClassTest {
     
     public static void method() {
         try {
-            String student = "MHPSEB000";
+       String student = "MHPSEB000";
        Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
         Connection con = DriverManager.getConnection("jdbc:odbc:TEST_iReport", "administrator", "");
         HashMap map = new HashMap();

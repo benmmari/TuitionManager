@@ -1927,3 +1927,61 @@ java.sql.SQLException: [Microsoft][ODBC Microsoft Access Driver] Syntax error (m
 17:06:10.270 INFO  - ADMIN: retrieve student numbers 719
 17:07:10.342 INFO  - ADMIN: add payment of -500.0 by :BHMPHE001
 17:59:11.741 INFO  - ADMIN logged off. Session over.
+12:19:44.416 INFO  - ADMIN logged in. Session begin.
+12:19:44.637 INFO  - ADMIN: retrieve student numbers 719
+12:19:56.368 INFO  - ADMIN: retrieve student info
+12:19:56.405 INFO  - ADMIN: retrieve student numbers 719
+12:20:00.930 ERROR - SQL Exception
+java.sql.SQLException: [Microsoft][ODBC Microsoft Access Driver] Syntax error (missing operator) in query expression 'Grade = Grade 0'.
+	at sun.jdbc.odbc.JdbcOdbc.createSQLException(JdbcOdbc.java:6956) ~[?:1.7.0_25]
+	at sun.jdbc.odbc.JdbcOdbc.standardError(JdbcOdbc.java:7113) ~[?:1.7.0_25]
+	at sun.jdbc.odbc.JdbcOdbc.SQLExecDirect(JdbcOdbc.java:3109) ~[?:1.7.0_25]
+	at sun.jdbc.odbc.JdbcOdbcStatement.execute(JdbcOdbcStatement.java:337) ~[?:1.7.0_25]
+	at sun.jdbc.odbc.JdbcOdbcStatement.executeQuery(JdbcOdbcStatement.java:252) ~[?:1.7.0_25]
+	at tuitionmanager.ConnectionManager.getStudentNumbersForGrade(ConnectionManager.java:746) [classes/:?]
+	at tuitionmanager.Main.jButton7ActionPerformed(Main.java:1485) [classes/:?]
+	at tuitionmanager.Main.access$200(Main.java:30) [classes/:?]
+	at tuitionmanager.Main$7.actionPerformed(Main.java:318) [classes/:?]
+	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2018) [?:1.7.0_25]
+	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2341) [?:1.7.0_25]
+	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402) [?:1.7.0_25]
+	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259) [?:1.7.0_25]
+	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252) [?:1.7.0_25]
+	at java.awt.Component.processMouseEvent(Component.java:6505) [?:1.7.0_25]
+	at javax.swing.JComponent.processMouseEvent(JComponent.java:3321) [?:1.7.0_25]
+	at java.awt.Component.processEvent(Component.java:6270) [?:1.7.0_25]
+	at java.awt.Container.processEvent(Container.java:2229) [?:1.7.0_25]
+	at java.awt.Component.dispatchEventImpl(Component.java:4861) [?:1.7.0_25]
+	at java.awt.Container.dispatchEventImpl(Container.java:2287) [?:1.7.0_25]
+	at java.awt.Component.dispatchEvent(Component.java:4687) [?:1.7.0_25]
+	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4832) [?:1.7.0_25]
+	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4492) [?:1.7.0_25]
+	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4422) [?:1.7.0_25]
+	at java.awt.Container.dispatchEventImpl(Container.java:2273) [?:1.7.0_25]
+	at java.awt.Window.dispatchEventImpl(Window.java:2719) [?:1.7.0_25]
+	at java.awt.Component.dispatchEvent(Component.java:4687) [?:1.7.0_25]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:735) [?:1.7.0_25]
+	at java.awt.EventQueue.access$200(EventQueue.java:103) [?:1.7.0_25]
+	at java.awt.EventQueue$3.run(EventQueue.java:694) [?:1.7.0_25]
+	at java.awt.EventQueue$3.run(EventQueue.java:692) [?:1.7.0_25]
+	at java.security.AccessController.doPrivileged(Native Method) [?:1.7.0_25]
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:76) [?:1.7.0_25]
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:87) [?:1.7.0_25]
+	at java.awt.EventQueue$4.run(EventQueue.java:708) [?:1.7.0_25]
+	at java.awt.EventQueue$4.run(EventQueue.java:706) [?:1.7.0_25]
+	at java.security.AccessController.doPrivileged(Native Method) [?:1.7.0_25]
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:76) [?:1.7.0_25]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:705) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:242) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:161) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:150) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:146) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:138) [?:1.7.0_25]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:91) [?:1.7.0_25]
+12:20:00.957 INFO  - ADMIN: retrieve student numbers 719
+12:21:02.203 INFO  - ADMIN logged off. Session over.
+12:21:13.264 INFO  - ADMIN logged in. Session begin.
+12:21:13.382 INFO  - ADMIN: retrieve student numbers 719
+12:21:22.237 INFO  - ADMIN: retrieve student info
+12:21:22.275 INFO  - ADMIN: retrieve student numbers 719
+12:21:26.733 INFO  - ADMIN: retrieve student numbers 719
