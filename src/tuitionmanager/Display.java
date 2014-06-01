@@ -126,8 +126,8 @@ public class Display extends javax.swing.JFrame {
          System.out.println("HELLO");
      
         String driver = "sun.jdbc.odbc.JdbcOdbcDriver";
-    String url = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)}; DBQ=" + "C://System//keys.accdb";   
-     //String url = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)}; DBQ=" + "C:\\ Annadale.accdb";   
+    //String url = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)}; DBQ=" + "C://System//keys.accdb";   
+     String url = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)}; DBQ=" + "C://System//keys.mdb";   
      
      //anime is the database
         String username = ""; //leave blank if none

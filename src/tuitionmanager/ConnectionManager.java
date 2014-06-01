@@ -64,8 +64,8 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
     
     public Connection getConnection() {
         String driver = "sun.jdbc.odbc.JdbcOdbcDriver";
-        String url = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)}; DBQ=" + "C://System//Annadale.accdb";
-        //String url = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)}; DBQ=" + "C://System//School//Annadale.mdb";
+        //String url = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)}; DBQ=" + "C://System//Annadale.accdb";
+        String url = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)}; DBQ=" + "C://System//Annadale.mdb";
         
         //anime is the database
         String username = ""; //leave blank if none
