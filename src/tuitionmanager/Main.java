@@ -9,6 +9,8 @@ import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -19,6 +21,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  *
@@ -29,6 +32,7 @@ public class Main extends javax.swing.JFrame {
     final int paymentTab = 1;
     
     ConnectionManager theManager = null;
+    JasperReportPrint jrp=null;
     String termChoiceText;
     String currentUser;
     /**
@@ -69,9 +73,8 @@ public class Main extends javax.swing.JFrame {
         buttonGroup3.add(fees2);
         this.theManager = theManager;
         theManager.getGradeCosts();
-        
-        
-        
+        jrp = new JasperReportPrint();      
+                
         theManager.getBusCosts();
         jFileChooser1.setFileFilter(new FileFilter() {
             
@@ -174,6 +177,7 @@ public class Main extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         studentView = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
         sAdd = new javax.swing.JPanel();
         addButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -254,6 +258,7 @@ public class Main extends javax.swing.JFrame {
         buttonM = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         termDisplay = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -308,12 +313,21 @@ public class Main extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Class Teacher");
 
+        jButton7.setText("Generate Reports");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout sViewLayout = new javax.swing.GroupLayout(sView);
         sView.setLayout(sViewLayout);
         sViewLayout.setHorizontalGroup(
             sViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sViewLayout.createSequentialGroup()
                 .addComponent(studentComboView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel14)
                 .addGap(28, 28, 28)
@@ -325,12 +339,14 @@ public class Main extends javax.swing.JFrame {
             sViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sViewLayout.createSequentialGroup()
                 .addGroup(sViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(studentComboView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(sViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(studentComboView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton7))
                     .addGroup(sViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(teacherLabel)
                         .addComponent(jLabel14)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))
         );
 
         studentPane.addTab("View", sView);
@@ -756,7 +772,7 @@ public class Main extends javax.swing.JFrame {
 
         dayCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Day", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
-        monthCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Month", "JAN", "FEB", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" }));
+        monthCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Month", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" }));
 
         yearCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Year", "2013", "2014" }));
 
@@ -934,6 +950,13 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jButton8.setText("Generate Report");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout paymentAddLayout = new javax.swing.GroupLayout(paymentAdd);
         paymentAdd.setLayout(paymentAddLayout);
         paymentAddLayout.setHorizontalGroup(
@@ -978,6 +1001,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(surnameL, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(gradeL, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(balanceL))
+                .addGap(254, 254, 254)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1021,7 +1046,8 @@ public class Main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(paymentAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
-                            .addComponent(balanceL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(balanceL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton8)))
                     .addGroup(paymentAddLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(paymentAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1462,6 +1488,24 @@ public class Main extends javax.swing.JFrame {
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        try {
+            // TODO add your handling code here:
+            String grade= studentComboView.getSelectedItem().toString();
+            jrp.printGrade(grade, theManager.getStudentNumbersForGrade(grade));
+        } catch (JRException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        String grade= gradeL.getText();
+        String studentNumber = studentNumberL.getText();
+        jrp.printStudent(grade, studentNumber);
+
+    }//GEN-LAST:event_jButton8ActionPerformed
     
     
     public void initializeTerm(String term) {
@@ -1544,6 +1588,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

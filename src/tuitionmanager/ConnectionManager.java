@@ -72,7 +72,7 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         String password = ""; //leave blank if none
         try {
             Class.forName(driver);
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) { 
             logger.error("Class not found",e );
             
         }
@@ -732,6 +732,37 @@ public class ConnectionManager extends SwingWorker<Integer, Object[]>{
         }
         
         
+    }
+    
+        public ArrayList<String> getStudentNumbersForGrade(String grade) {
+        Connection conn =null;
+        Statement st = null;
+        ArrayList<String> students =  new ArrayList<>();
+
+        try {
+            conn = getConnection();
+            st = conn.createStatement();
+            String sql = "SELECT STU_ID FROM Students WHERE Grade = '"+grade+"'";
+            ResultSet rs  = st.executeQuery(sql);
+            while (rs!=null && rs.next()) {
+                students.add(rs.getString(1));
+            }
+        }
+        catch (SQLException e) {
+            logger.error("SQL Exception",e );
+        }
+        
+        finally {
+            try {
+                conn.close();
+                logger.info(user +": retrieve student numbers "+studentNumbers.size() );
+                
+            }
+            catch (SQLException e) {
+                logger.error("SQL Exception",e );
+            }
+        }
+        return students;
     }
     
     public void addToTeachers(String grade, String name) {
